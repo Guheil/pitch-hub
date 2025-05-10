@@ -77,7 +77,7 @@ export default function SignupPage() {
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
       console.log('GitHub signup initiated');
-    } catch (err) {
+    } catch {
       setError('GitHub signup failed');
     } finally {
       setIsLoading(false);

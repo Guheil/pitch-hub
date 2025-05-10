@@ -68,7 +68,7 @@ export default function LoginPage() {
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
       console.log('GitHub login initiated');
-    } catch (err) {
+    } catch {
       setError('GitHub login failed');
     } finally {
       setIsLoading(false);
@@ -155,7 +155,7 @@ export default function LoginPage() {
         transition={{ duration: 0.5, delay: 0.3 }}
       >
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          Don't have an account?{' '}
+          Don&apos;t have an account?{' '}
           <Link
             href="/signup"
             className="text-blue-600 dark:text-blue-400 hover:underline font-medium"

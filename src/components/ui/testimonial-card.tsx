@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface TestimonialCardProps {
@@ -41,7 +42,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
     >
       {/* Quote mark decoration */}
       <div className="absolute top-4 right-4 text-4xl text-foreground/10 font-serif">
-        "
+        &ldquo;
       </div>
 
       <div className="relative z-10">
@@ -51,16 +52,18 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
             quoteClassName
           )}
         >
-          "{quote}"
+          &ldquo;{quote}&rdquo;
         </p>
 
         <div className="flex items-center">
           {avatarSrc && (
-            <div className="mr-4 w-12 h-12 rounded-full overflow-hidden">
-              <img
+            <div className="mr-4 w-12 h-12 rounded-full overflow-hidden relative">
+              <Image
                 src={avatarSrc}
                 alt={author}
-                className="w-full h-full object-cover"
+                fill
+                sizes="48px"
+                className="object-cover"
               />
             </div>
           )}

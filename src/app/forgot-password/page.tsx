@@ -66,7 +66,7 @@ export default function ForgotPasswordPage() {
           >
             <IconCheck size={20} className="flex-shrink-0 mt-0.5" />
             <p>
-              Check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.
+              Check your email for a link to reset your password. If it doesn&apos;t appear within a few minutes, check your spam folder.
             </p>
           </motion.div>
 

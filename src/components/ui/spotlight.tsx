@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
@@ -30,9 +30,9 @@ export function Spotlight({
     }
   };
 
-  const render = () => {
+  const render = useCallback(() => {
     if (containerRef.current) {
-      const { w, h } = containerSize.current;
+      // Use destructured values directly
       const { x, y } = mousePosition.current;
       const speed = 0.15;
 
@@ -56,29 +56,29 @@ export function Spotlight({
 
       requestAnimationFrame(render);
     }
-  };
+  }, [size]);
 
   useEffect(() => {
     if (containerRef.current) {
       containerSize.current.w = containerRef.current.offsetWidth;
       containerSize.current.h = containerRef.current.offsetHeight;
     }
-    
+
     setVisible(true);
     requestAnimationFrame(render);
-    
+
     const handleResize = () => {
       if (containerRef.current) {
         containerSize.current.w = containerRef.current.offsetWidth;
         containerSize.current.h = containerRef.current.offsetHeight;
       }
     };
-    
+
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [render]);
 
   return (
     <motion.div
