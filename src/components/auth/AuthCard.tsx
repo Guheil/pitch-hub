@@ -46,12 +46,19 @@ export const AuthCard: React.FC<AuthCardProps> = ({ children, title, subtitle })
             )}
           </motion.div>
 
-          <Card>
-            <CardHeader>
+          <Card className="bg-white/10 dark:bg-black/10 backdrop-blur-md border border-white/20 dark:border-white/10 relative overflow-hidden">
+            {/* Decorative elements for unique background */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-purple-500/10 rounded-full blur-xl" />
+              <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-blue-500/10 rounded-full blur-xl" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-32 bg-cyan-500/5 rounded-full blur-xl rotate-45" />
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent opacity-30" />
+            </div>
+            <CardHeader className="relative z-10">
               <CardTitle className="text-center">{title}</CardTitle>
               {subtitle && <CardDescription className="text-center">{subtitle}</CardDescription>}
             </CardHeader>
-            <CardContent>
+            <CardContent className="relative z-10">
               {children}
             </CardContent>
           </Card>
