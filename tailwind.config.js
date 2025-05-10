@@ -93,6 +93,16 @@ module.exports = {
           "0%": { transform: "scale(0.95)", opacity: 0 },
           "100%": { transform: "scale(1)", opacity: 1 },
         },
+        "gradient-xy": {
+          "0%, 100%": {
+            "background-size": "400% 400%",
+            "background-position": "left center"
+          },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center"
+          }
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -104,6 +114,7 @@ module.exports = {
         "slide-in-bottom": "slide-in-bottom 0.4s ease-out",
         "slide-in-top": "slide-in-top 0.4s ease-out",
         "scale-in": "scale-in 0.3s ease-out",
+        "gradient-xy": "gradient-xy 15s ease infinite",
       },
     },
   },

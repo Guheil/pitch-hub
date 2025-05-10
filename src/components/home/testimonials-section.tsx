@@ -30,8 +30,8 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ classN
   ];
 
   return (
-    <section className={cn("py-20 px-4", className)}>
-      <div className="max-w-7xl mx-auto">
+    <section className={cn("min-h-screen flex items-center py-20 px-4", className)}>
+      <div className="max-w-7xl mx-auto w-full">
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -44,14 +44,14 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ classN
               Testimonials
             </span>
           </motion.div>
-          
+
           <TextReveal
             text="Success Stories from Our Community"
             as="h2"
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
             animationType="slide-up"
           />
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +62,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ classN
             Hear from entrepreneurs and investors who have found success through PitchHub.
           </motion.p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard
@@ -74,7 +74,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ classN
             />
           ))}
         </div>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

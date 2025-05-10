@@ -13,14 +13,14 @@ interface CTASectionProps {
 
 export const CTASection: React.FC<CTASectionProps> = ({ className }) => {
   return (
-    <section className={cn("py-20 px-4 relative overflow-hidden", className)}>
+    <section className={cn("min-h-screen flex items-center py-20 px-4 relative overflow-hidden", className)}>
       {/* Background decorations */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-50" />
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
         <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
       </div>
-      
+
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="bg-white/10 dark:bg-black/20 backdrop-blur-lg border border-white/20 dark:border-white/10 rounded-2xl p-8 md:p-12">
           <div className="text-center mb-8">
@@ -30,7 +30,7 @@ export const CTASection: React.FC<CTASectionProps> = ({ className }) => {
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
               animationType="slide-up"
             />
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ export const CTASection: React.FC<CTASectionProps> = ({ className }) => {
               Join PitchHub today and connect with investors, collaborators, and fellow entrepreneurs.
             </motion.p>
           </div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ export const CTASection: React.FC<CTASectionProps> = ({ className }) => {
               Browse Ideas
             </Link>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

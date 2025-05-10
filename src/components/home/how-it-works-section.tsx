@@ -37,8 +37,8 @@ export const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ className 
   ];
 
   return (
-    <section className={cn("py-20 px-4 bg-foreground/5", className)}>
-      <div className="max-w-7xl mx-auto">
+    <section className={cn("min-h-screen flex items-center py-20 px-4 bg-foreground/5", className)}>
+      <div className="max-w-7xl mx-auto w-full">
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

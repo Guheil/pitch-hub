@@ -5,13 +5,13 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import FeatureCard from "../ui/feature-card";
 import TextReveal from "../ui/text-reveal";
-import { 
-  IconVideo, 
-  IconUsers, 
-  IconBulb, 
-  IconChartBar, 
-  IconShield, 
-  IconRocket 
+import {
+  IconVideo,
+  IconUsers,
+  IconBulb,
+  IconChartBar,
+  IconShield,
+  IconRocket
 } from "@tabler/icons-react";
 
 interface FeaturesSectionProps {
@@ -53,8 +53,8 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) =
   ];
 
   return (
-    <section className={cn("py-20 px-4", className)}>
-      <div className="max-w-7xl mx-auto">
+    <section className={cn("min-h-screen flex items-center py-20 px-4", className)}>
+      <div className="max-w-7xl mx-auto w-full">
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -67,14 +67,14 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) =
               Features
             </span>
           </motion.div>
-          
+
           <TextReveal
             text="Everything You Need to Pitch Your Startup"
             as="h2"
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
             animationType="slide-up"
           />
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -85,7 +85,7 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) =
             Our platform provides all the tools entrepreneurs need to showcase their ideas and connect with the right people.
           </motion.p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
             <FeatureCard
