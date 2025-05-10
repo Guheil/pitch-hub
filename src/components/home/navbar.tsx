@@ -30,6 +30,18 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <header
       className={cn(
@@ -41,7 +53,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
       )}
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 z-10">
+        <Link href="/" className="flex items-center gap-2 relative z-20">
           <IconBrandItch size={32} className="text-foreground" />
           <span className="text-xl font-bold">PitchHub</span>
         </Link>
@@ -76,7 +88,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden z-10"
+          className="md:hidden relative z-20 p-2 rounded-full bg-white/10 dark:bg-black/10 backdrop-blur-md border border-white/10 dark:border-white/5"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -87,45 +99,58 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
           )}
         </button>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu Overlay */}
         <AnimatePresence>
           {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-              className="absolute inset-0 bg-white dark:bg-black p-4 flex flex-col"
-              style={{ top: "100%" }}
-            >
-              <nav className="flex flex-col gap-4 py-6">
-                {navItems.map((item) => (
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 bg-black/20 backdrop-blur-sm z-10"
+                onClick={() => setIsMobileMenuOpen(false)}
+                aria-hidden="true"
+              />
+
+              {/* Menu Content */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+                className="fixed top-[4.5rem] left-4 right-4 bg-white/80 dark:bg-black/80 backdrop-blur-md rounded-xl border border-white/20 dark:border-white/10 p-4 z-10 shadow-lg"
+              >
+                <nav className="flex flex-col gap-2">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-lg font-medium py-3 px-4 rounded-lg hover:bg-white/20 dark:hover:bg-black/20 transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  <div className="border-t border-gray-200 dark:border-gray-800 my-2" />
                   <Link
-                    key={item.name}
-                    href={item.href}
-                    className="text-lg font-medium py-2"
+                    href="/login"
+                    className="text-lg font-medium py-3 px-4 rounded-lg hover:bg-white/20 dark:hover:bg-black/20 transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    {item.name}
+                    Log in
                   </Link>
-                ))}
-                <div className="border-t border-gray-200 dark:border-gray-800 my-4" />
-                <Link
-                  href="/login"
-                  className="text-lg font-medium py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Log in
-                </Link>
-                <Link
-                  href="/signup"
-                  className="text-lg font-medium py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Sign up
-                </Link>
-              </nav>
-            </motion.div>
+                  <Link
+                    href="/signup"
+                    className="mt-2 rounded-lg border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-lg px-4 py-3"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Sign up
+                  </Link>
+                </nav>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </div>

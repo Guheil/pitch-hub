@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import AuthCard from '@/components/auth/AuthCard';
 import Input from '@/components/ui/Input';
@@ -11,6 +12,7 @@ import SocialLogin from '@/components/auth/SocialLogin';
 import { IconMail, IconLock, IconAlertCircle } from '@tabler/icons-react';
 
 export default function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -30,8 +32,8 @@ export default function LoginPage() {
       // For demo purposes, just show what would happen
       console.log('Login with:', { email, password });
 
-      // Redirect would happen after successful login
-      // router.push('/dashboard');
+      // Redirect to dashboard after successful login
+      router.push('/dashboard');
     } catch (err) {
       setError('Invalid email or password');
       console.error('Login error:', err);
@@ -51,8 +53,8 @@ export default function LoginPage() {
 
       console.log('Google login initiated');
 
-      // Redirect would happen after successful login
-      // router.push('/dashboard');
+      // Redirect to dashboard after successful login
+      router.push('/dashboard');
     } catch (err) {
       setError('Google login failed');
       console.error('Google login error:', err);
@@ -68,6 +70,9 @@ export default function LoginPage() {
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
       console.log('GitHub login initiated');
+
+      // Redirect to dashboard after successful login
+      router.push('/dashboard');
     } catch {
       setError('GitHub login failed');
     } finally {

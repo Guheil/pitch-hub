@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import AuthCard from '@/components/auth/AuthCard';
 import Input from '@/components/ui/Input';
@@ -11,6 +12,7 @@ import SocialLogin from '@/components/auth/SocialLogin';
 import { IconUser, IconMail, IconLock, IconAlertCircle, IconShieldCheck } from '@tabler/icons-react';
 
 export default function SignupPage() {
+  const router = useRouter();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -39,8 +41,8 @@ export default function SignupPage() {
       // For demo purposes, just show what would happen
       console.log('Signup with:', { name, email, password });
 
-      // Redirect would happen after successful signup
-      // router.push('/dashboard');
+      // Redirect to dashboard after successful signup
+      router.push('/dashboard');
     } catch (err) {
       setError('Failed to create account');
       console.error('Signup error:', err);
@@ -60,8 +62,8 @@ export default function SignupPage() {
 
       console.log('Google signup initiated');
 
-      // Redirect would happen after successful signup
-      // router.push('/dashboard');
+      // Redirect to dashboard after successful signup
+      router.push('/dashboard');
     } catch (err) {
       setError('Google signup failed');
       console.error('Google signup error:', err);
@@ -77,6 +79,9 @@ export default function SignupPage() {
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
       console.log('GitHub signup initiated');
+
+      // Redirect to dashboard after successful signup
+      router.push('/dashboard');
     } catch {
       setError('GitHub signup failed');
     } finally {
