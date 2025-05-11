@@ -149,7 +149,7 @@ export default function Dashboard() {
 
                   <div className="prose prose-lg dark:prose-invert max-w-none">
                     <p className="lead text-xl">
-                      PitchHub is where groundbreaking ideas meet opportunity. Explore the latest innovations, connect with fellow entrepreneurs, and discover what's trending in the startup ecosystem.
+                      PitchHub is where groundbreaking ideas meet opportunity. Explore the latest innovations, connect with fellow entrepreneurs, and discover what&apos;s trending in the startup ecosystem.
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
@@ -180,7 +180,7 @@ export default function Dashboard() {
 
                     <div className="bg-gradient-to-r from-blue-500/5 to-purple-500/5 p-6 rounded-xl border border-blue-500/10 dark:border-purple-500/10 my-6">
                       <p className="italic text-gray-700 dark:text-gray-300">
-                        "The best way to predict the future is to create it." <span className="font-medium">— Peter Drucker</span>
+                        &quot;The best way to predict the future is to create it.&quot; <span className="font-medium">— Peter Drucker</span>
                       </p>
                     </div>
 
