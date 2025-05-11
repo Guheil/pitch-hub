@@ -227,30 +227,9 @@ function ExplorePageContent() {
     return () => clearTimeout(timer);
   }, [searchParams, categories]);
 
-  // Update URL when filters change
-  useEffect(() => {
-    if (isLoading) return; // Don't update URL during initial load
-
-    const params = new URLSearchParams();
-
-    if (sortBy !== "views") {
-      params.set('sort', sortBy);
-    }
-
-    if (selectedCategory) {
-      params.set('category', selectedCategory);
-    }
-
-    if (searchQuery) {
-      params.set('search', searchQuery);
-    }
-
-    const queryString = params.toString();
-    const url = queryString ? `/pitches?${queryString}` : '/pitches';
-
-    // Update URL without refreshing the page
-    router.replace(url, { scroll: false });
-  }, [sortBy, selectedCategory, searchQuery, isLoading, router]);
+  // We're now handling URL updates directly in each filter change handler
+  // This effect is only for initial loading of URL parameters
+  // We don't need to update the URL when filters change anymore
 
   // Filter and sort pitches
   const filteredPitches = MOCK_PITCHES.filter(pitch => {
@@ -300,6 +279,9 @@ function ExplorePageContent() {
     setSelectedCategory(null);
     setSortBy("views");
     setCurrentPage(1);
+
+    // Clear URL parameters
+    router.replace('/pitches', { scroll: false });
   };
 
   return (
@@ -371,14 +353,35 @@ function ExplorePageContent() {
                         placeholder="Search for startup ideas..."
                         value={searchQuery}
                         onChange={(e) => {
-                          setSearchQuery(e.target.value);
+                          const newSearchQuery = e.target.value;
+                          setSearchQuery(newSearchQuery);
                           setCurrentPage(1); // Reset to first page on search
+
+                          // Update URL with new search parameter
+                          const params = new URLSearchParams(searchParams.toString());
+                          if (newSearchQuery === "") {
+                            params.delete('search');
+                          } else {
+                            params.set('search', newSearchQuery);
+                          }
+                          const queryString = params.toString();
+                          const url = queryString ? `/pitches?${queryString}` : '/pitches';
+                          router.replace(url, { scroll: false });
                         }}
                         className="w-full pl-11 pr-4 py-2.5 rounded-full bg-white/50 dark:bg-black/20 backdrop-blur-md border border-white/20 dark:border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
                       />
                       {searchQuery && (
                         <button
-                          onClick={() => setSearchQuery("")}
+                          onClick={() => {
+                            setSearchQuery("");
+                            setCurrentPage(1);
+                            // Update URL to remove search parameter
+                            const params = new URLSearchParams(searchParams.toString());
+                            params.delete('search');
+                            const queryString = params.toString();
+                            const url = queryString ? `/pitches?${queryString}` : '/pitches';
+                            router.replace(url, { scroll: false });
+                          }}
                           className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
                         >
                           <IconX size={16} />
@@ -429,7 +432,19 @@ function ExplorePageContent() {
                               {SORT_OPTIONS.map((option) => (
                                 <button
                                   key={option.value}
-                                  onClick={() => setSortBy(option.value)}
+                                  onClick={() => {
+                                    setSortBy(option.value);
+                                    // Update URL with new sort parameter
+                                    const params = new URLSearchParams(searchParams.toString());
+                                    if (option.value === "views") {
+                                      params.delete('sort');
+                                    } else {
+                                      params.set('sort', option.value);
+                                    }
+                                    const queryString = params.toString();
+                                    const url = queryString ? `/pitches?${queryString}` : '/pitches';
+                                    router.replace(url, { scroll: false });
+                                  }}
                                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors flex items-center gap-1.5 ${
                                     option.value === sortBy
                                       ? 'bg-blue-500 text-white'
@@ -454,8 +469,22 @@ function ExplorePageContent() {
                                 <button
                                   key={category}
                                   onClick={() => {
-                                    setSelectedCategory(category === selectedCategory ? null : category);
+                                    // If this category is already selected, clear it
+                                    // Otherwise, set it as the new category
+                                    const newCategory = category === selectedCategory ? null : category;
+                                    setSelectedCategory(newCategory);
                                     setCurrentPage(1); // Reset to first page on category change
+
+                                    // Update URL with new category parameter
+                                    const params = new URLSearchParams(searchParams.toString());
+                                    if (newCategory === null) {
+                                      params.delete('category');
+                                    } else {
+                                      params.set('category', newCategory);
+                                    }
+                                    const queryString = params.toString();
+                                    const url = queryString ? `/pitches?${queryString}` : '/pitches';
+                                    router.replace(url, { scroll: false });
                                   }}
                                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                                     category === selectedCategory
