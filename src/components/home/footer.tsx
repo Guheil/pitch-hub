@@ -60,7 +60,7 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <div className="relative w-8 h-8">
-                <Image src="/logo.svg" alt="FoundersFrame Logo" width={32} height={32} />
+                <Image src="/logo-founder.svg" alt="FoundersFrame Logo" width={32} height={32} />
               </div>
               <span className="text-xl font-bold">FoundersFrame</span>
             </Link>

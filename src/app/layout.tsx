@@ -18,10 +18,10 @@ export const metadata: Metadata = {
   keywords: ["startup", "pitch", "ideas", "entrepreneurs", "investors"],
   icons: {
     icon: [
-      { url: '/favicon.svg' },
+      { url: '/logo-founder.svg' },
     ],
     apple: [
-      { url: '/logo.svg' },
+      { url: '/logo-founder.svg' },
     ],
   },
 };

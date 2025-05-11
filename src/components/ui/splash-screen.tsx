@@ -273,7 +273,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({
                       >
                         <div className="relative w-20 h-20">
                           <Image
-                            src="/logo.svg"
+                            src="/logo-founder.svg"
                             alt="FoundersFrame Logo"
                             width={80}
                             height={80}

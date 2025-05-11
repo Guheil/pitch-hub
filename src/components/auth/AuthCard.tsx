@@ -1,10 +1,10 @@
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/Card';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import AnimatedGradientBackground from '../ui/animated-gradient-background';
 import Spotlight from '../ui/spotlight';
-import { IconBrandItch } from '@tabler/icons-react';
 
 interface AuthCardProps {
   children: React.ReactNode;
@@ -31,8 +31,10 @@ export const AuthCard: React.FC<AuthCardProps> = ({ children, title, subtitle })
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <Link href="/" className="inline-flex items-center gap-2">
-              <IconBrandItch size={32} className="text-foreground" />
-              <h1 className="text-3xl font-bold">PitchHub</h1>
+              <div className="relative w-8 h-8">
+                <Image src="/logo-founder.svg" alt="FoundersFrame Logo" width={32} height={32} />
+              </div>
+              <h1 className="text-3xl font-bold">FoundersFrame</h1>
             </Link>
             {subtitle && (
               <motion.p
@@ -69,7 +71,7 @@ export const AuthCard: React.FC<AuthCardProps> = ({ children, title, subtitle })
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            &copy; {new Date().getFullYear()} PitchHub. All rights reserved.
+            &copy; {new Date().getFullYear()} FoundersFrame. All rights reserved.
           </motion.div>
         </div>
       </Spotlight>

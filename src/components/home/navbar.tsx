@@ -55,7 +55,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 relative z-20">
           <div className="relative w-8 h-8">
-            <Image src="/logo.svg" alt="FoundersFrame Logo" width={32} height={32} />
+            <Image src="/logo-founder.svg" alt="FoundersFrame Logo" width={32} height={32} />
           </div>
           <span className="text-xl font-bold">FoundersFrame</span>
         </Link>

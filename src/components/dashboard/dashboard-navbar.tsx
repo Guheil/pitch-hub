@@ -74,7 +74,7 @@ export const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ className }) =
           {/* Logo */}
           <Link href="/dashboard" className="flex items-center gap-2 relative z-20">
             <div className="relative w-7 h-7">
-              <Image src="/logo.svg" alt="FoundersFrame Logo" width={28} height={28} />
+              <Image src="/logo-founder.svg" alt="FoundersFrame Logo" width={28} height={28} />
             </div>
             <span className="text-xl font-bold">FoundersFrame</span>
           </Link>
