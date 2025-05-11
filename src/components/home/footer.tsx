@@ -2,8 +2,9 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { IconBrandItch, IconBrandTwitter, IconBrandLinkedin, IconBrandInstagram } from "@tabler/icons-react";
+import { IconBrandTwitter, IconBrandLinkedin, IconBrandInstagram } from "@tabler/icons-react";
 
 interface FooterProps {
   className?: string;
@@ -58,7 +59,9 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <IconBrandItch size={32} className="text-foreground" />
+              <div className="relative w-8 h-8">
+                <Image src="/logo.svg" alt="PitchHub Logo" width={32} height={32} />
+              </div>
               <span className="text-xl font-bold">PitchHub</span>
             </Link>
             <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md">

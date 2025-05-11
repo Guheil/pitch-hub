@@ -16,6 +16,14 @@ export const metadata: Metadata = {
   title: "PitchHub - Startup Idea Submission Platform",
   description: "A platform where users can submit their startup ideas with a pitch video, and others can view submissions.",
   keywords: ["startup", "pitch", "ideas", "entrepreneurs", "investors"],
+  icons: {
+    icon: [
+      { url: '/favicon.svg' },
+    ],
+    apple: [
+      { url: '/logo.svg' },
+    ],
+  },
 };
 
 export default function RootLayout({

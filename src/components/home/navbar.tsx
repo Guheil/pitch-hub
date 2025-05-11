@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { IconBrandItch, IconMenu2, IconX } from "@tabler/icons-react";
+import { IconMenu2, IconX } from "@tabler/icons-react";
 
 interface NavbarProps {
   className?: string;
@@ -53,7 +54,9 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 relative z-20">
-          <IconBrandItch size={32} className="text-foreground" />
+          <div className="relative w-8 h-8">
+            <Image src="/logo.svg" alt="PitchHub Logo" width={32} height={32} />
+          </div>
           <span className="text-xl font-bold">PitchHub</span>
         </Link>
 

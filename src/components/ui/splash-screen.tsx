@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { IconBrandItch, IconRocket, IconBulb, IconPresentation } from "@tabler/icons-react";
+import { IconRocket, IconBulb, IconPresentation } from "@tabler/icons-react";
 import AnimatedGradientBackground from "./animated-gradient-background";
 import Spotlight from "./spotlight";
 import Card3d from "./3d-card";
@@ -270,7 +271,15 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({
                         animate={{ scale: 1, opacity: 1, rotateZ: 0 }}
                         transition={{ delay: 0.3, duration: 0.8, type: "spring" }}
                       >
-                        <IconBrandItch size={80} className="drop-shadow-lg" />
+                        <div className="relative w-20 h-20">
+                          <Image
+                            src="/logo.svg"
+                            alt="PitchHub Logo"
+                            width={80}
+                            height={80}
+                            className="drop-shadow-lg"
+                          />
+                        </div>
                       </motion.div>
                     </div>
                   </motion.div>
