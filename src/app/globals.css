@@ -2,7 +2,9 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000; /* Pure black text for maximum contrast */
+  --text-muted: #333333; /* Very dark gray for muted text */
+  --text-muted-secondary: #444444; /* Dark gray for secondary text */
 }
 
 :root {
@@ -12,11 +14,17 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Dark theme */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --text-muted: #a0a0a0; /* Lighter gray for dark mode */
+  --text-muted-secondary: #909090; /* Secondary muted text for dark mode */
+}
+
+/* Apply dark mode by default */
+html {
+  color-scheme: dark;
 }
 
 body {
@@ -43,4 +51,462 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+/* Custom text color utilities */
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-muted-secondary {
+  color: var(--text-muted-secondary);
+}
+
+/* Override Tailwind text-gray classes for better contrast in light mode */
+.light .text-gray-400 {
+  color: #333333 !important;
+}
+
+.light .text-gray-500 {
+  color: #444444 !important;
+}
+
+/* Ensure dark mode still uses appropriate colors */
+.dark .text-gray-400 {
+  color: #a0a0a0 !important;
+}
+
+.dark .text-gray-500 {
+  color: #909090 !important;
+}
+
+/* Light mode high contrast overrides */
+.light {
+  /* Ensure all text has high contrast */
+  --tw-text-opacity: 1;
+  color-scheme: light;
+}
+
+/* Text color overrides for light mode */
+.light .text-white {
+  color: #000000 !important;
+}
+
+.light .text-gray-300 {
+  color: #222222 !important;
+}
+
+.light .text-gray-600 {
+  color: #333333 !important;
+}
+
+.light .text-gray-700 {
+  color: #222222 !important;
+}
+
+.light .text-gray-800 {
+  color: #111111 !important;
+}
+
+/* Apply dark text to most elements in light mode, but with exceptions */
+.light {
+  color: var(--foreground);
+}
+
+/* Restore specific colors that should remain */
+.light .text-blue-500,
+.light .text-blue-600 {
+  color: #0057b8 !important; /* Darker blue for better contrast */
+}
+
+.light .text-purple-500,
+.light .text-purple-600 {
+  color: #5a189a !important; /* Darker purple for better contrast */
+}
+
+.light .text-red-500,
+.light .text-red-600 {
+  color: #b30000 !important; /* Darker red for better contrast */
+}
+
+.light .text-green-500,
+.light .text-green-600 {
+  color: #006400 !important; /* Darker green for better contrast */
+}
+
+/* Ensure backgrounds have good contrast with text */
+.light .bg-white\/50 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.light .bg-white\/30 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.light .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.light .border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Improve contrast for buttons and interactive elements */
+.light button:not([class*="bg-"]),
+.light a:not([class*="bg-"]) {
+  color: inherit;
+}
+
+/* Button text colors */
+.light .bg-blue-600,
+.light .bg-blue-700,
+.light .bg-indigo-600,
+.light .bg-indigo-700,
+.light .bg-purple-600,
+.light .bg-purple-700 {
+  color: white !important;
+}
+
+.light button[class*="bg-gray-"],
+.light button[class*="bg-white"],
+.light a[class*="bg-gray-"],
+.light a[class*="bg-white"] {
+  color: #000000 !important;
+}
+
+.light [class*="dark:text-"] {
+  color: #000000 !important;
+}
+
+/* Fix headings and titles */
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light h5,
+.light h6 {
+  color: #000000 !important;
+}
+
+/* Fix text in cards */
+.light .card-title,
+.light .section-title,
+.light [class*="font-bold"],
+.light [class*="font-semibold"] {
+  color: #000000 !important;
+}
+
+/* Ensure gradient text is visible */
+.light [class*="bg-gradient"] {
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+/* Fix specific UI elements */
+.light .bg-foreground {
+  background-color: #0057b8 !important; /* Blue for primary buttons */
+}
+
+.light .text-background {
+  color: white !important;
+}
+
+/* Fix card backgrounds */
+.light .bg-white\/50 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.light .bg-black\/20,
+.light .bg-black\/30 {
+  background-color: rgba(240, 240, 240, 0.8) !important;
+}
+
+/* Fix pitch card backgrounds without affecting images */
+.light .card3d .bg-white\/50,
+.light .card3d .bg-black\/20 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Fix specific text colors */
+.light .text-blue-500,
+.light .text-blue-600,
+.light .text-indigo-500,
+.light .text-indigo-600,
+.light .text-purple-500,
+.light .text-purple-600 {
+  color: #0057b8 !important;
+}
+
+/* Fix navbar and menu items */
+.light nav a,
+.light .menu-item {
+  color: #333333 !important;
+}
+
+.light nav a:hover,
+.light .menu-item:hover {
+  color: #000000 !important;
+}
+
+/* Fix input fields */
+.light input,
+.light textarea,
+.light select {
+  color: #000000 !important;
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.light input::placeholder,
+.light textarea::placeholder {
+  color: #666666 !important;
+}
+
+.light input:focus,
+.light textarea:focus,
+.light select:focus {
+  border-color: #0057b8 !important;
+  box-shadow: 0 0 0 2px rgba(0, 87, 184, 0.2) !important;
+}
+
+/* Fix toggle switches and radio buttons */
+.light input[type="radio"],
+.light input[type="checkbox"] {
+  border-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Fix card shadows */
+.light .shadow-md,
+.light .shadow-lg,
+.light .shadow-xl {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Fix dividers */
+.light hr,
+.light .divider,
+.light [class*="divide-"] > * {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Fix badges and tags */
+.light .badge,
+.light .tag,
+.light [class*="rounded-full bg-"] {
+  color: #000000 !important;
+  background-color: rgba(240, 240, 240, 0.8) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Fix gradient backgrounds - except for images */
+.light [class*="bg-gradient-to-"]:not(.from-black) {
+  background: linear-gradient(to right, rgba(240, 240, 240, 0.8), rgba(250, 250, 250, 0.8)) !important;
+}
+
+/* Preserve image overlays */
+.light .from-black,
+.light .from-black\/40,
+.light .from-black\/60,
+.light .from-black\/20 {
+  --tw-gradient-from: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Fix title text with gradients */
+.light [class*="bg-gradient-to-r from-"] {
+  background: none !important;
+  color: #0057b8 !important;
+  -webkit-text-fill-color: #0057b8 !important;
+}
+
+/* Fix specific title styles */
+.light .text-3xl,
+.light .text-4xl,
+.light .text-5xl,
+.light .text-6xl {
+  color: #000000 !important;
+}
+
+/* Fix specific button colors */
+.light .bg-blue-500,
+.light .bg-blue-600,
+.light .bg-blue-700 {
+  background-color: #0057b8 !important;
+  color: white !important;
+}
+
+.light .bg-purple-500,
+.light .bg-purple-600,
+.light .bg-purple-700 {
+  background-color: #5a189a !important;
+  color: white !important;
+}
+
+.light .bg-red-500,
+.light .bg-red-600,
+.light .bg-red-700 {
+  background-color: #b30000 !important;
+  color: white !important;
+}
+
+.light .bg-green-500,
+.light .bg-green-600,
+.light .bg-green-700 {
+  background-color: #006400 !important;
+  color: white !important;
+}
+
+/* Fix specific text colors in buttons */
+.light button.text-white,
+.light a.text-white {
+  color: white !important;
+}
+
+/* Fix Google sign-in button in light mode */
+.light button[class*="bg-white"],
+.light button.bg-white {
+  background-color: white !important;
+  color: #333333 !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.light button.hover\:bg-gray-50:hover {
+  background-color: #f5f5f5 !important;
+}
+
+/* Fix Google icon color */
+.light .text-red-500 {
+  color: #ea4335 !important; /* Google red */
+}
+
+/* Fix user dropdown menu */
+.light .bg-gray-800 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
+}
+
+.light .ring-black {
+  --tw-ring-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.light .divide-gray-700 {
+  --tw-divide-opacity: 1;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Fix user dropdown text */
+.light .text-gray-300 {
+  color: #333333 !important;
+}
+
+.light .text-gray-400 {
+  color: #666666 !important;
+}
+
+.light .text-gray-500 {
+  color: #555555 !important;
+}
+
+/* Fix user avatar */
+.light .w-8.h-8.rounded-full.bg-gradient-to-br.from-blue-500.to-purple-600,
+.light .bg-gradient-to-br.from-blue-500.to-purple-600 {
+  background: linear-gradient(to bottom right, #0057b8, #5a189a) !important;
+  color: white !important;
+}
+
+.light .hover\:bg-gray-700:hover {
+  background-color: #f0f0f0 !important;
+}
+
+/* Fix welcome back section - preserve image opacity */
+.light .from-blue-600\/90 {
+  --tw-gradient-from: rgba(0, 87, 184, 0.7) !important;
+}
+
+.light .to-purple-600\/90 {
+  --tw-gradient-to: rgba(90, 24, 154, 0.7) !important;
+}
+
+.light .mix-blend-multiply {
+  mix-blend-mode: overlay !important;
+}
+
+/* Ensure pitch card images maintain full opacity */
+.light .object-cover {
+  opacity: 1 !important;
+}
+
+/* Fix pitch card image overlays */
+.light .bg-gradient-to-t.from-black\/40,
+.light .bg-gradient-to-t.from-black\/60,
+.light .bg-gradient-to-t.from-black\/20 {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent) !important;
+  opacity: 1 !important;
+}
+
+/* Fix welcome back section text */
+.light .bg-white\/10,
+.light .bg-white\/20 {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.light .border-white\/20,
+.light .border-white\/30 {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Keep welcome section text white for better contrast on colored backgrounds */
+.light .welcome-section h1,
+.light .welcome-section h3,
+.light .welcome-section p,
+.light .welcome-section span {
+  color: white !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+.light .welcome-section .text-white,
+.light .text-white {
+  color: white !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+.light .welcome-section .text-white\/80,
+.light .welcome-section .text-white\/90,
+.light .text-white\/80,
+.light .text-white\/90 {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Direct fix for welcome section - preserve image opacity */
+.light main .bg-gradient-to-r.from-blue-600\/90.to-purple-600\/90 {
+  background: linear-gradient(to right, rgba(0, 87, 184, 0.7), rgba(90, 24, 154, 0.7)) !important;
+}
+
+.light main .bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.light main .bg-white\/20 {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.light main .bg-blue-500\/30 {
+  background-color: rgba(0, 87, 184, 0.3) !important;
+}
+
+.light main .bg-purple-500\/30 {
+  background-color: rgba(90, 24, 154, 0.3) !important;
+}
+
+.light main .bg-pink-500\/30 {
+  background-color: rgba(219, 39, 119, 0.3) !important;
+}
+
+.light main .text-white {
+  color: white !important;
 }

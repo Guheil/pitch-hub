@@ -486,7 +486,7 @@ function TeamMemberCard({ member, index }: TeamMemberCardProps) {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-blue-500/20"
+                  className="!rounded-full !aspect-square bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-blue-500/20"
                 >
                   <IconBrandTwitter size={18} className="text-blue-500" />
                 </Button>
@@ -495,7 +495,7 @@ function TeamMemberCard({ member, index }: TeamMemberCardProps) {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-blue-700/20"
+                  className="!rounded-full !aspect-square bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-blue-700/20"
                 >
                   <IconBrandLinkedin size={18} className="text-blue-700" />
                 </Button>
@@ -504,7 +504,7 @@ function TeamMemberCard({ member, index }: TeamMemberCardProps) {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-gray-700/20"
+                  className="!rounded-full !aspect-square bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-gray-700/20"
                 >
                   <IconBrandGithub size={18} className="text-gray-700 dark:text-gray-300" />
                 </Button>

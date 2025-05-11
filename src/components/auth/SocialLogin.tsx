@@ -27,7 +27,7 @@ export const SocialLogin: React.FC<SocialLoginProps> = ({
         onClick={onGoogleLogin}
         disabled={isLoading}
         leftIcon={<IconBrandGoogle size={18} className="text-red-500" />}
-        className="bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200"
+        className="bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 text-gray-800 dark:text-gray-200 border-gray-200 dark:border-gray-700"
       >
         Continue with Google
       </Button>
@@ -39,7 +39,7 @@ export const SocialLogin: React.FC<SocialLoginProps> = ({
           onClick={onGithubLogin}
           disabled={isLoading}
           leftIcon={<IconBrandGithub size={18} />}
-          className="bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200"
+          className="bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 text-gray-800 dark:text-gray-200 border-gray-200 dark:border-gray-700"
         >
           Continue with GitHub
         </Button>

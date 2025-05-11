@@ -99,9 +99,9 @@ export default function AboutPage() {
         <Navbar />
 
         {/* Hero Section */}
-        <Spotlight className="min-h-[80vh] flex flex-col items-center justify-center p-4 pt-24 relative overflow-hidden">
+        <Spotlight className="min-h-[80vh] flex flex-col items-center justify-center p-4 pt-32 relative overflow-hidden"> {/* Increased top padding */}
           {/* Decorative elements */}
-          <div className="absolute top-20 left-1/4 w-64 h-64 rounded-full bg-blue-500/10 blur-3xl"></div>
+          <div className="absolute top-32 left-1/4 w-64 h-64 rounded-full bg-blue-500/10 blur-3xl"></div> {/* Adjusted position */}
           <div className="absolute bottom-20 right-1/4 w-64 h-64 rounded-full bg-purple-500/10 blur-3xl"></div>
 
           <div className="max-w-5xl mx-auto text-center px-4 relative z-10">
@@ -391,18 +391,30 @@ export default function AboutPage() {
 
                   <div className="mt-8 flex gap-4">
                     <Link href="https://twitter.com/foundersframe">
-                      <Button variant="outline" size="icon">
-                        <IconBrandTwitter size={20} />
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-blue-500/20"
+                      >
+                        <IconBrandTwitter size={20} className="text-blue-500" />
                       </Button>
                     </Link>
                     <Link href="https://linkedin.com/company/foundersframe">
-                      <Button variant="outline" size="icon">
-                        <IconBrandLinkedin size={20} />
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-blue-700/20"
+                      >
+                        <IconBrandLinkedin size={20} className="text-blue-700" />
                       </Button>
                     </Link>
                     <Link href="https://github.com/foundersframe">
-                      <Button variant="outline" size="icon">
-                        <IconBrandGithub size={20} />
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-gray-700/20"
+                      >
+                        <IconBrandGithub size={20} className="text-gray-700 dark:text-gray-300" />
                       </Button>
                     </Link>
                   </div>
@@ -566,7 +578,7 @@ function TeamMemberCard({ member, index }: TeamMemberCardProps) {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-blue-500/20"
+                  className="!rounded-full !aspect-square bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-blue-500/20"
                 >
                   <IconBrandTwitter size={18} className="text-blue-500" />
                 </Button>
@@ -575,7 +587,7 @@ function TeamMemberCard({ member, index }: TeamMemberCardProps) {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-blue-700/20"
+                  className="!rounded-full !aspect-square bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-blue-700/20"
                 >
                   <IconBrandLinkedin size={18} className="text-blue-700" />
                 </Button>
@@ -584,7 +596,7 @@ function TeamMemberCard({ member, index }: TeamMemberCardProps) {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-gray-700/20"
+                  className="!rounded-full !aspect-square bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-gray-700/20"
                 >
                   <IconBrandGithub size={18} className="text-gray-700 dark:text-gray-300" />
                 </Button>

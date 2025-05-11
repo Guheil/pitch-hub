@@ -73,7 +73,7 @@ export const Card3d = ({
       <motion.div
         ref={cardRef}
         className={cn(
-          "relative transition-transform duration-200 ease-out transform-gpu",
+          "relative transition-transform duration-200 ease-out transform-gpu card3d",
           className
         )}
         onMouseMove={handleMouseMove}

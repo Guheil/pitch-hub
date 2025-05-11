@@ -135,7 +135,7 @@ export default function Dashboard() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-12"
+            className="mb-12 welcome-section"
           >
             <div className="relative rounded-2xl overflow-hidden shadow-xl">
               {/* Background Image with Overlay */}
@@ -621,6 +621,7 @@ export default function Dashboard() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-20" // Added margin-top for spacing
           >
             <footer className="py-8 px-4 border-t border-gray-200 dark:border-gray-800">
               <div className="max-w-7xl mx-auto">
@@ -628,7 +629,7 @@ export default function Dashboard() {
                   <div className="md:col-span-2">
                     <div className="flex items-center gap-2 mb-4">
                       <IconBulb size={24} className="text-blue-500" />
-                      <span className="text-xl font-bold">PitchHub</span>
+                      <span className="text-xl font-bold">FoundersFrame</span>
                     </div>
                     <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md">
                       Connecting innovative ideas with the resources they need to thrive. Join our community of entrepreneurs, investors, and industry experts.
@@ -718,7 +719,7 @@ export default function Dashboard() {
 
                 <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center">
                   <p className="text-sm text-gray-500 mb-4 md:mb-0">
-                    &copy; 2023 PitchHub. All rights reserved.
+                    &copy; {new Date().getFullYear()} FoundersFrame. All rights reserved.
                   </p>
                   <div className="flex gap-6">
                     <Link href="/terms" className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-300">

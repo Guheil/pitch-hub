@@ -21,14 +21,6 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
       ],
     },
     {
-      title: "Community",
-      links: [
-        { name: "Find a Mentor", href: "/community/mentors" },
-        { name: "Resources", href: "/resources" },
-        { name: "Events", href: "/events" },
-      ],
-    },
-    {
       title: "Company",
       links: [
         { name: "About", href: "/about" },
@@ -54,10 +46,10 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
   ];
 
   return (
-    <footer className={cn("py-12 px-4 border-t border-gray-200 dark:border-gray-800", className)}>
+    <footer className={cn("py-12 px-4 border-t border-gray-200 dark:border-gray-800 mt-16", className)}>
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <div className="relative w-8 h-8">
                 <Image src="/logo-founder.svg" alt="FoundersFrame Logo" width={32} height={32} />
