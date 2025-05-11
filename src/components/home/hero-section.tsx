@@ -33,7 +33,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
             <span className="bg-foreground text-background text-xs px-2 py-0.5 rounded-full mr-2">
               New
             </span>
-            <span>Introducing PitchHub - Share your startup ideas with the world</span>
+            <span>Introducing FoundersFrame - Share your startup ideas with the world</span>
           </motion.div>
 
           <TextReveal
@@ -50,7 +50,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto"
           >
-            PitchHub is a platform where entrepreneurs can submit their startup ideas with pitch videos, and connect with potential investors and collaborators.
+            FoundersFrame is a platform where entrepreneurs can submit their startup ideas with pitch videos, and connect with potential investors and collaborators.
           </motion.p>
 
           <motion.div

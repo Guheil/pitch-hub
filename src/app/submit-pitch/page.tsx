@@ -880,7 +880,7 @@ export default function SubmitPitchPage() {
 
         <div className="text-center">
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-            Ready to submit your pitch? Once submitted, your pitch will be visible to the PitchHub community.
+            Ready to submit your pitch? Once submitted, your pitch will be visible to the FoundersFrame community.
           </p>
         </div>
       </div>

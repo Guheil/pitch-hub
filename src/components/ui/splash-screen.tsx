@@ -274,7 +274,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({
                         <div className="relative w-20 h-20">
                           <Image
                             src="/logo.svg"
-                            alt="PitchHub Logo"
+                            alt="FoundersFrame Logo"
                             width={80}
                             height={80}
                             className="drop-shadow-lg"
@@ -291,7 +291,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({
                   variants={itemVariants}
                 >
                   <h1 className="text-4xl sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-pink-500">
-                    <AnimatedText text="PitchHub" />
+                    <AnimatedText text="FoundersFrame" />
                   </h1>
                   <p className="mt-3 text-xl text-gray-600 dark:text-gray-300">
                     <AnimatedText text="Share your ideas with the world" />

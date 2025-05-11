@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PitchHub - Startup Idea Submission Platform",
+  title: "FoundersFrame - Startup Idea Submission Platform",
   description: "A platform where users can submit their startup ideas with a pitch video, and others can view submissions.",
   keywords: ["startup", "pitch", "ideas", "entrepreneurs", "investors"],
   icons: {

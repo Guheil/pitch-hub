@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
-  IconBrandItch,
   IconMenu2,
   IconX,
   IconBell,
@@ -14,6 +13,7 @@ import {
   IconSettings,
   IconPlus
 } from "@tabler/icons-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 
 interface DashboardNavbarProps {
@@ -73,8 +73,10 @@ export const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ className }) =
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/dashboard" className="flex items-center gap-2 relative z-20">
-            <IconBrandItch size={28} className="text-foreground" />
-            <span className="text-xl font-bold">PitchHub</span>
+            <div className="relative w-7 h-7">
+              <Image src="/logo.svg" alt="FoundersFrame Logo" width={28} height={28} />
+            </div>
+            <span className="text-xl font-bold">FoundersFrame</span>
           </Link>
 
           {/* Desktop Navigation */}

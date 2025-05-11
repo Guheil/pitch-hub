@@ -179,7 +179,7 @@ export default function Dashboard() {
                     <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-lg">
                       <h2 className="text-2xl font-bold text-white mb-4">Innovate, Connect, Succeed</h2>
                       <p className="text-white/90 text-lg mb-6">
-                        PitchHub is where groundbreaking ideas meet opportunity. Explore the latest innovations, connect with fellow entrepreneurs, and discover what&apos;s trending in the startup ecosystem.
+                        FoundersFrame is where groundbreaking ideas meet opportunity. Explore the latest innovations, connect with fellow entrepreneurs, and discover what&apos;s trending in the startup ecosystem.
                       </p>
 
                       <div className="flex flex-col gap-6">
