@@ -257,6 +257,13 @@ export const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ className }) =
                 >
                   Find a Mentor
                 </Link>
+                <Link
+                  href="/dashboard/about"
+                  className="text-lg font-medium py-3 px-4 rounded-lg hover:bg-white/20 dark:hover:bg-black/20 transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  About Us
+                </Link>
                 <div className="border-t border-gray-200 dark:border-gray-800 my-2" />
                 <Link href="/submit-pitch">
                   <Button

@@ -690,7 +690,7 @@ export default function Dashboard() {
                     <ul className="space-y-3">
                       <li>
                         <Link
-                          href="/about"
+                          href="/dashboard/about"
                           className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300 transition-colors"
                         >
                           About Us
