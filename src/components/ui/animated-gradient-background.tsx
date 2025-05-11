@@ -42,7 +42,7 @@ export const AnimatedGradientBackground = ({
         className={`absolute inset-0 z-0 overflow-hidden ${className}`}
         style={{ opacity }}
       >
-        {colors.map((color, index) => (
+        {colors.slice(0, 3).map((color, index) => (
           <motion.div
             key={index}
             className="absolute rounded-full"
@@ -54,7 +54,9 @@ export const AnimatedGradientBackground = ({
               filter: `blur(${blur}px)`,
               mixBlendMode: "normal",
               willChange: "transform",
+              transform: "translate3d(0, 0, 0)",
             }}
+            initial={false}
             animate={{
               x: interactive
                 ? mousePosition.x - 200 + Math.sin(index * 45) * 100

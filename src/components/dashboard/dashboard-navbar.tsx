@@ -97,19 +97,27 @@ export const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ className }) =
             >
               Saved
             </Link>
+            <Link
+              href="/community/mentors"
+              className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+            >
+              Find a Mentor
+            </Link>
           </nav>
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-4">
             {/* Create Pitch Button */}
-            <Button
-              variant="primary"
-              size="sm"
-              className="hidden md:flex"
-              leftIcon={<IconPlus size={16} />}
-            >
-              Create Pitch
-            </Button>
+            <Link href="/submit-pitch">
+              <Button
+                variant="primary"
+                size="sm"
+                className="hidden md:flex"
+                leftIcon={<IconPlus size={16} />}
+              >
+                Create Pitch
+              </Button>
+            </Link>
 
             {/* Notifications */}
             <button
@@ -240,16 +248,25 @@ export const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ className }) =
                 >
                   Saved
                 </Link>
-                <div className="border-t border-gray-200 dark:border-gray-800 my-2" />
-                <Button
-                  variant="primary"
-                  fullWidth={true}
-                  leftIcon={<IconPlus size={16} />}
+                <Link
+                  href="/community/mentors"
+                  className="text-lg font-medium py-3 px-4 rounded-lg hover:bg-white/20 dark:hover:bg-black/20 transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="mt-2 py-3"
                 >
-                  Create Pitch
-                </Button>
+                  Find a Mentor
+                </Link>
+                <div className="border-t border-gray-200 dark:border-gray-800 my-2" />
+                <Link href="/submit-pitch">
+                  <Button
+                    variant="primary"
+                    fullWidth={true}
+                    leftIcon={<IconPlus size={16} />}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="mt-2 py-3"
+                  >
+                    Create Pitch
+                  </Button>
+                </Link>
               </nav>
             </motion.div>
           </>

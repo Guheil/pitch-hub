@@ -35,7 +35,7 @@ export const Card3d = ({
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || !isHovered) return;
 
     const rect = cardRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
@@ -48,12 +48,15 @@ export const Card3d = ({
     const rotateY = (mouseX / (rect.width / 2)) * rotationIntensity;
     const rotateX = -((mouseY / (rect.height / 2)) * rotationIntensity);
 
-    setRotation({ x: rotateX, y: rotateY });
+    // Use requestAnimationFrame for smoother updates
+    requestAnimationFrame(() => {
+      setRotation({ x: rotateX, y: rotateY });
 
-    // Calculate glare position
-    const glareX = (mouseX / rect.width) * 100;
-    const glareY = (mouseY / rect.height) * 100;
-    setGlarePosition({ x: glareX, y: glareY });
+      // Calculate glare position
+      const glareX = (mouseX / rect.width) * 100;
+      const glareY = (mouseY / rect.height) * 100;
+      setGlarePosition({ x: glareX, y: glareY });
+    });
   };
 
   const handleMouseEnter = () => {
