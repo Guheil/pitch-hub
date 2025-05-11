@@ -18,7 +18,6 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
     { name: "Features", href: "#features" },
     { name: "How It Works", href: "#how-it-works" },
     { name: "Testimonials", href: "#testimonials" },
-    { name: "Pricing", href: "#pricing" },
   ];
 
   useEffect(() => {

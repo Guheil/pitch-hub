@@ -16,7 +16,6 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
       links: [
         { name: "Features", href: "#features" },
         { name: "How It Works", href: "#how-it-works" },
-        { name: "Pricing", href: "#pricing" },
         { name: "FAQ", href: "/faq" },
       ],
     },
