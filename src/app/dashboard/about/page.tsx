@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import DashboardNavbar from "@/components/dashboard/dashboard-navbar";
@@ -9,17 +9,13 @@ import AnimatedGradientBackground from "@/components/ui/animated-gradient-backgr
 import Spotlight from "@/components/ui/spotlight";
 import { Card3d } from "@/components/ui/3d-card";
 import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
 import {
   IconBrandTwitter,
   IconBrandLinkedin,
-  IconMail,
-  IconMapPin,
   IconHeart,
   IconBulb,
   IconRocket,
   IconUsers,
-  IconArrowRight,
   IconBrandGithub,
 } from "@tabler/icons-react";
 
@@ -186,13 +182,13 @@ export default function DashboardAboutPage() {
               >
                 <div className="bg-white/10 dark:bg-black/10 backdrop-blur-md rounded-xl p-8 border border-white/20 shadow-lg">
                   <p className="text-lg text-foreground/80 mb-6 leading-relaxed">
-                    At FoundersFrame, we're on a mission to democratize entrepreneurship by providing a platform where innovative ideas can be shared, refined, and brought to life.
+                    At FoundersFrame, we&apos;re on a mission to democratize entrepreneurship by providing a platform where innovative ideas can be shared, refined, and brought to life.
                   </p>
                   <p className="text-lg text-foreground/80 mb-6 leading-relaxed">
                     Founded by Xavier, Andriq, and Maira, our platform was born from a shared vision to create a space where entrepreneurs from all backgrounds can showcase their ideas and connect with the resources they need to succeed.
                   </p>
                   <p className="text-lg text-foreground/80 leading-relaxed">
-                    Though we're just getting started, we're committed to building a supportive ecosystem that bridges the gap between visionary founders and the feedback, mentorship, and connections they need to transform their ideas into reality.
+                    Though we&apos;re just getting started, we&apos;re committed to building a supportive ecosystem that bridges the gap between visionary founders and the feedback, mentorship, and connections they need to transform their ideas into reality.
                   </p>
                 </div>
               </motion.div>
@@ -246,11 +242,11 @@ export default function DashboardAboutPage() {
               className="text-center mb-16"
             >
               <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-foreground/10 bg-foreground/5 backdrop-blur-sm text-sm mb-4">
-                <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent font-medium">Where We're Headed</span>
+                <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent font-medium">Where We&apos;re Headed</span>
               </div>
               <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Our Journey Begins</h2>
               <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
-                Though our journey has just begun, we're excited about the path ahead as we build FoundersFrame with a deep commitment to supporting entrepreneurs.
+                Though our journey has just begun, we&apos;re excited about the path ahead as we build FoundersFrame with a deep commitment to supporting entrepreneurs.
               </p>
             </motion.div>
 
@@ -287,7 +283,7 @@ export default function DashboardAboutPage() {
                 <TimelineItem
                   year="Coming Soon"
                   title="Official Launch"
-                  description="We're working diligently to prepare FoundersFrame for its official launch, where we'll begin supporting entrepreneurs from around the world."
+                  description="We&apos;re working diligently to prepare FoundersFrame for its official launch, where we&apos;ll begin supporting entrepreneurs from around the world."
                   isLeft={false}
                   icon={<IconHeart size={24} />}
                 />
@@ -375,7 +371,15 @@ export default function DashboardAboutPage() {
 }
 
 // Timeline Item Component
-function TimelineItem({ year, title, description, isLeft, icon }) {
+interface TimelineItemProps {
+  year: string;
+  title: string;
+  description: string;
+  isLeft: boolean;
+  icon: React.ReactNode;
+}
+
+function TimelineItem({ year, title, description, isLeft, icon }: TimelineItemProps) {
   return (
     <motion.div
       initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
@@ -419,7 +423,22 @@ function TimelineItem({ year, title, description, isLeft, icon }) {
 }
 
 // Team Member Card Component
-function TeamMemberCard({ member, index }) {
+interface TeamMemberCardProps {
+  member: {
+    name: string;
+    role: string;
+    bio: string;
+    avatar: string;
+    social: {
+      twitter: string;
+      linkedin: string;
+      github: string;
+    };
+  };
+  index: number;
+}
+
+function TeamMemberCard({ member, index }: TeamMemberCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -499,7 +518,16 @@ function TeamMemberCard({ member, index }) {
 }
 
 // Value Card Component
-function ValueCard({ value, index }) {
+interface ValueCardProps {
+  value: {
+    title: string;
+    description: string;
+    icon: React.ReactNode;
+  };
+  index: number;
+}
+
+function ValueCard({ value, index }: ValueCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
