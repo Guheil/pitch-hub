@@ -16,7 +16,9 @@ import {
   IconVideo,
   IconBrandTwitter,
   IconBrandLinkedin,
-  IconBrandInstagram
+  IconBrandInstagram,
+  IconEye,
+  IconHeart
 } from "@tabler/icons-react";
 import { Card } from "@/components/ui/Card";
 import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
@@ -128,74 +130,162 @@ export default function Dashboard() {
         <DashboardNavbar />
 
         <main className="container mx-auto px-4 py-8">
-          {/* Welcome Section - Narrative Style */}
+          {/* Welcome Section - Enhanced Design with Picture Background */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="mb-12"
           >
-            <Card className="bg-white/50 dark:bg-black/20 backdrop-blur-lg border border-white/20 dark:border-white/10 overflow-hidden">
-              <div className="p-8 relative">
-                {/* Decorative elements */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-pink-500/10 to-yellow-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4 pointer-events-none"></div>
+            <div className="relative rounded-2xl overflow-hidden shadow-xl">
+              {/* Background Image with Overlay */}
+              <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-purple-600/90 mix-blend-multiply z-10"></div>
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop')] bg-cover bg-center"></div>
+              </div>
 
-                <div className="relative">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white">
-                      <IconBulb size={32} />
+              {/* Content Container */}
+              <div className="relative z-10 p-8 md:p-12">
+                {/* Welcome Header - Redesigned */}
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+                  <div className="flex items-center gap-5">
+                    <div className="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 shadow-lg flex items-center justify-center text-white transform rotate-3 hover:rotate-0 transition-all duration-300">
+                      <IconBulb size={40} className="text-white" />
                     </div>
                     <div>
-                      <h1 className="text-3xl font-bold">Welcome back!</h1>
-                      <p className="text-gray-600 dark:text-gray-400">Your innovation journey continues here</p>
+                      <h1 className="text-4xl font-bold text-white">Welcome back!</h1>
+                      <p className="text-white/80 text-lg">Your innovation journey continues here</p>
                     </div>
                   </div>
 
-                  <div className="prose prose-lg dark:prose-invert max-w-none">
-                    <p className="lead text-xl">
-                      PitchHub is where groundbreaking ideas meet opportunity. Explore the latest innovations, connect with fellow entrepreneurs, and discover what&apos;s trending in the startup ecosystem.
-                    </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
-                      <div className="flex gap-4">
-                        <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center">
-                          <IconRocket className="text-blue-500" size={24} />
+                  <div className="flex items-center gap-3">
+                    <div className="flex -space-x-4">
+                      {[1, 2, 3, 4].map((i) => (
+                        <div key={i} className="w-10 h-10 rounded-full border-2 border-white/30 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-xs font-bold">
+                          {String.fromCharCode(64 + i)}
                         </div>
-                        <div>
-                          <h3 className="text-lg font-medium mb-2">Discover Innovations</h3>
-                          <p className="text-gray-600 dark:text-gray-400">
-                            Browse through a curated collection of the most viewed and latest startup pitches from entrepreneurs around the world.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex gap-4">
-                        <div className="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center">
-                          <IconUsers className="text-purple-500" size={24} />
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-medium mb-2">Connect & Collaborate</h3>
-                          <p className="text-gray-600 dark:text-gray-400">
-                            Engage with a community of like-minded innovators, potential investors, and industry experts to bring your ideas to life.
-                          </p>
-                        </div>
-                      </div>
+                      ))}
                     </div>
-
-                    <div className="bg-gradient-to-r from-blue-500/5 to-purple-500/5 p-6 rounded-xl border border-blue-500/10 dark:border-purple-500/10 my-6">
-                      <p className="italic text-gray-700 dark:text-gray-300">
-                        &quot;The best way to predict the future is to create it.&quot; <span className="font-medium">— Peter Drucker</span>
-                      </p>
+                    <div className="text-white/80 text-sm">
+                      <span className="font-semibold text-white">12,500+</span> active users
                     </div>
-
-                    <p>
-                      Ready to make an impact? Explore trending pitches below or create your own to share with our growing community of {Math.floor(Math.random() * 5000) + 10000}+ innovators and investors.
-                    </p>
                   </div>
                 </div>
+
+                {/* Main Content - Two Column Layout */}
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                  {/* Left Column - Main Text */}
+                  <div className="lg:col-span-3">
+                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-lg">
+                      <h2 className="text-2xl font-bold text-white mb-4">Innovate, Connect, Succeed</h2>
+                      <p className="text-white/90 text-lg mb-6">
+                        PitchHub is where groundbreaking ideas meet opportunity. Explore the latest innovations, connect with fellow entrepreneurs, and discover what&apos;s trending in the startup ecosystem.
+                      </p>
+
+                      <div className="flex flex-col gap-6">
+                        <div className="flex items-start gap-4">
+                          <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-500/30 flex items-center justify-center">
+                            <IconRocket className="text-white" size={24} />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-medium text-white mb-2">Discover Innovations</h3>
+                            <p className="text-white/80">
+                              Browse through a curated collection of the most viewed and latest startup pitches from entrepreneurs around the world.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-start gap-4">
+                          <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-purple-500/30 flex items-center justify-center">
+                            <IconUsers className="text-white" size={24} />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-medium text-white mb-2">Connect & Collaborate</h3>
+                            <p className="text-white/80">
+                              Engage with a community of like-minded innovators, potential investors, and industry experts to bring your ideas to life.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Column - Quote and Stats */}
+                  <div className="lg:col-span-2 flex flex-col gap-6">
+                    {/* Inspirational Quote */}
+                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-lg relative overflow-hidden">
+                      <div className="absolute -bottom-6 -right-6 text-white/10 pointer-events-none">
+                        <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/>
+                        </svg>
+                      </div>
+                      <p className="text-white/90 text-lg italic mb-4 relative z-10">
+                        &quot;The best way to predict the future is to create it.&quot;
+                      </p>
+                      <p className="text-white font-medium text-right">— Peter Drucker</p>
+                    </div>
+
+                    {/* Activity Stats */}
+                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-lg">
+                      <h3 className="text-lg font-medium text-white mb-4">This Week&apos;s Activity</h3>
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-lg bg-blue-500/30 flex items-center justify-center">
+                              <IconEye className="text-white" size={20} />
+                            </div>
+                            <span className="text-white/90">New Pitches</span>
+                          </div>
+                          <span className="text-white font-bold text-xl">+42</span>
+                        </div>
+
+                        <div className="flex justify-between items-center">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-lg bg-purple-500/30 flex items-center justify-center">
+                              <IconUsers className="text-white" size={20} />
+                            </div>
+                            <span className="text-white/90">New Connections</span>
+                          </div>
+                          <span className="text-white font-bold text-xl">+28</span>
+                        </div>
+
+                        <div className="flex justify-between items-center">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-lg bg-pink-500/30 flex items-center justify-center">
+                              <IconHeart className="text-white" size={20} />
+                            </div>
+                            <span className="text-white/90">Pitch Likes</span>
+                          </div>
+                          <span className="text-white font-bold text-xl">+124</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Call to Action */}
+                <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-lg">
+                  <p className="text-white/90 text-lg">
+                    Ready to make an impact with your next big idea?
+                  </p>
+                  <Link href="/submit-pitch" className="group bg-white hover:bg-white/90 text-blue-600 font-semibold py-3 px-6 rounded-xl flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    Create Your Pitch
+                    <motion.div
+                      initial={{ x: 0 }}
+                      animate={{ x: 5 }}
+                      transition={{
+                        duration: 0.8,
+                        repeat: Infinity,
+                        repeatType: "reverse"
+                      }}
+                      className="group-hover:translate-x-1"
+                    >
+                      <IconArrowUpRight size={18} />
+                    </motion.div>
+                  </Link>
+                </div>
               </div>
-            </Card>
+            </div>
           </motion.div>
 
           {/* Trending Categories */}
@@ -319,35 +409,39 @@ export default function Dashboard() {
 
                 {/* Animated dots */}
                 <div className="absolute inset-0 overflow-hidden">
-                  {[...Array(20)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute w-1 h-1 bg-black/20 dark:bg-white/30 rounded-full"
-                      initial={{
-                        x: Math.random() * 100 + "%",
-                        y: Math.random() * 100 + "%",
-                        opacity: Math.random() * 0.5 + 0.3
-                      }}
-                      animate={{
-                        x: [
-                          Math.random() * 100 + "%",
-                          Math.random() * 100 + "%",
-                          Math.random() * 100 + "%"
-                        ],
-                        y: [
-                          Math.random() * 100 + "%",
-                          Math.random() * 100 + "%",
-                          Math.random() * 100 + "%"
-                        ],
-                        opacity: [0.3, 0.7, 0.3]
-                      }}
-                      transition={{
-                        duration: Math.random() * 20 + 10,
-                        repeat: Infinity,
-                        ease: "linear"
-                      }}
-                    />
-                  ))}
+                  {[...Array(20)].map((_, i) => {
+                    // Use deterministic values based on index instead of random
+                    const xPos = ((i * 17) % 100) + "%";
+                    const yPos = ((i * 23) % 100) + "%";
+                    const xPos2 = (((i + 7) * 13) % 100) + "%";
+                    const yPos2 = (((i + 11) * 19) % 100) + "%";
+                    const xPos3 = (((i + 13) * 11) % 100) + "%";
+                    const yPos3 = (((i + 17) * 7) % 100) + "%";
+                    const opacityVal = 0.3 + ((i % 5) * 0.1);
+                    const durationVal = 10 + (i % 10) * 2;
+
+                    return (
+                      <motion.div
+                        key={i}
+                        className="absolute w-1 h-1 bg-black/20 dark:bg-white/30 rounded-full"
+                        initial={{
+                          x: xPos,
+                          y: yPos,
+                          opacity: opacityVal
+                        }}
+                        animate={{
+                          x: [xPos, xPos2, xPos3],
+                          y: [yPos, yPos2, yPos3],
+                          opacity: [0.3, 0.7, 0.3]
+                        }}
+                        transition={{
+                          duration: durationVal,
+                          repeat: Infinity,
+                          ease: "linear"
+                        }}
+                      />
+                    );
+                  })}
                 </div>
               </div>
 
@@ -624,7 +718,7 @@ export default function Dashboard() {
 
                 <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center">
                   <p className="text-sm text-gray-500 mb-4 md:mb-0">
-                    &copy; {new Date().getFullYear()} PitchHub. All rights reserved.
+                    &copy; 2023 PitchHub. All rights reserved.
                   </p>
                   <div className="flex gap-6">
                     <Link href="/terms" className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-300">

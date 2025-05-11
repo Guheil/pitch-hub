@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import DashboardNavbar from "@/components/dashboard/dashboard-navbar";
-import PitchCard from "@/components/dashboard/pitch-card";
 import { Button } from "@/components/ui/Button";
 import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
 import { Card } from "@/components/ui/Card";
@@ -21,7 +20,6 @@ import {
   IconHeart,
   IconCategory,
   IconCalendar,
-  IconStar,
   IconAdjustmentsHorizontal,
   IconBookmark,
   IconTrash
@@ -88,7 +86,25 @@ const ALL_CATEGORIES = Array.from(
   new Set(SAVED_PITCHES.map(pitch => pitch.category))
 ).sort();
 
-export default function SavedPage() {
+// Loading fallback component
+function SavedPageLoading() {
+  return (
+    <div className="min-h-screen">
+      <DashboardNavbar />
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex justify-center items-center h-64">
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-gray-600 dark:text-gray-400">Loading saved pitches...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Main content component that uses useSearchParams
+function SavedPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -146,14 +162,7 @@ export default function SavedPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery, selectedCategory, sortBy, currentPage]);
 
-  // Format date to readable string
-  const formatDate = (date: Date) => {
-    return new Intl.DateTimeFormat('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric'
-    }).format(date);
-  };
+  // State and filter management
 
   // Filter pitches based on selected filters
   const filteredPitches = SAVED_PITCHES.filter(pitch => {
@@ -721,3 +730,12 @@ const SavedPitchCard: React.FC<SavedPitchCardProps> = ({
     </motion.div>
   );
 };
+
+// Export the page component with Suspense boundary
+export default function SavedPage() {
+  return (
+    <Suspense fallback={<SavedPageLoading />}>
+      <SavedPageContent />
+    </Suspense>
+  );
+}

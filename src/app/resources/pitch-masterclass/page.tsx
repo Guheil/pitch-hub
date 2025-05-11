@@ -1,16 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import DashboardNavbar from "@/components/dashboard/dashboard-navbar";
 import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
 import {
-  IconVideo,
   IconArrowLeft,
   IconClock,
-  IconUser,
   IconStar,
   IconDownload,
   IconShare,
@@ -122,7 +118,7 @@ export default function PitchMasterclassPage() {
           <div className="relative rounded-3xl overflow-hidden mb-8">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-purple-600/90"></div>
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay"></div>
-            
+
             <div className="relative z-10 p-8 md:p-12 text-white">
               <div className="flex flex-col md:flex-row md:items-center gap-6">
                 <div className="flex-1">
@@ -133,13 +129,13 @@ export default function PitchMasterclassPage() {
                       Featured
                     </span>
                   </div>
-                  
+
                   <h1 className="text-3xl md:text-4xl font-bold mb-4">{PITCH_MASTERCLASS.title}</h1>
-                  
+
                   <p className="text-white/90 text-lg mb-6 max-w-3xl">
                     {PITCH_MASTERCLASS.description}
                   </p>
-                  
+
                   <div className="flex flex-wrap items-center gap-6">
                     <div className="flex items-center">
                       <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-sm font-bold mr-3">
@@ -150,17 +146,17 @@ export default function PitchMasterclassPage() {
                         <p className="text-sm text-white/70">{PITCH_MASTERCLASS.authorRole}</p>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center gap-1">
                       <IconClock size={18} />
                       <span>{PITCH_MASTERCLASS.duration}</span>
                     </div>
-                    
+
                     <div className="flex items-center gap-1">
                       <IconStar size={18} className="text-yellow-400" />
                       <span>{PITCH_MASTERCLASS.rating} ({PITCH_MASTERCLASS.ratingCount} ratings)</span>
                     </div>
-                    
+
                     <div className="flex items-center gap-3 ml-auto">
                       <button className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
                         <IconBookmark size={20} />
@@ -190,7 +186,7 @@ export default function PitchMasterclassPage() {
                   allowFullScreen
                 ></iframe>
               </div>
-              
+
               {/* Module Description */}
               <div className="mb-8">
                 <h2 className="text-2xl font-bold mb-2">
@@ -200,7 +196,7 @@ export default function PitchMasterclassPage() {
                   {PITCH_MASTERCLASS.modules[activeModule].description}
                 </p>
               </div>
-              
+
               {/* Author Bio */}
               <div className="p-6 rounded-2xl bg-white/50 dark:bg-black/20 backdrop-blur-sm border border-white/10 dark:border-white/5 mb-8">
                 <h3 className="text-xl font-bold mb-4">About the Instructor</h3>
@@ -228,7 +224,7 @@ export default function PitchMasterclassPage() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Share and Download */}
               <div className="flex flex-wrap gap-4 mb-8">
                 <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500 hover:bg-blue-600 text-white transition-colors">
@@ -241,7 +237,7 @@ export default function PitchMasterclassPage() {
                 </button>
               </div>
             </div>
-            
+
             {/* Sidebar - Course Modules and Resources */}
             <div className="lg:col-span-1">
               {/* Course Modules */}
@@ -283,7 +279,7 @@ export default function PitchMasterclassPage() {
                   ))}
                 </div>
               </div>
-              
+
               {/* Downloadable Resources */}
               <div className="p-6 rounded-2xl bg-white/50 dark:bg-black/20 backdrop-blur-sm border border-white/10 dark:border-white/5">
                 <h3 className="text-xl font-bold mb-4">Resources</h3>

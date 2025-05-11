@@ -9,15 +9,12 @@ import AnimatedGradientBackground from "@/components/ui/animated-gradient-backgr
 import {
   IconVideo,
   IconRocket,
-  IconBulb,
   IconUsers,
   IconBook,
   IconFileText,
   IconChartBar,
-  IconBrandYoutube,
   IconSearch,
   IconArrowUpRight,
-  IconFilter,
   IconStar,
   IconClock,
   IconDownload
@@ -170,8 +167,7 @@ export default function ResourcesPage() {
     return 0;
   });
 
-  // Get featured resources
-  const featuredResources = RESOURCES.filter(resource => resource.featured);
+  // Sort resources by featured and new status
 
   return (
     <AnimatedGradientBackground
@@ -198,7 +194,7 @@ export default function ResourcesPage() {
                 transition={{ duration: 0.5 }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                Entrepreneur's Resource Hub
+                Entrepreneur&apos;s Resource Hub
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: -20 }}
@@ -282,8 +278,25 @@ export default function ResourcesPage() {
   );
 }
 
+// Define the type for resources
+type Resource = {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  featured: boolean;
+  new: boolean;
+  image: string;
+  link: string;
+  duration?: string;
+  author?: string;
+  authorRole?: string;
+  fileType?: string;
+  downloads?: number;
+};
+
 // Resource Card Component
-function ResourceCard({ resource }: { resource: any }) {
+function ResourceCard({ resource }: { resource: Resource }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

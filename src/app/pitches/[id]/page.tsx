@@ -23,7 +23,11 @@ import {
   IconVideo,
   IconPhoto,
   IconArrowRight,
+  IconMessageCircle,
 } from "@tabler/icons-react";
+
+import CommentSection from "@/components/comments/CommentSection";
+import { MOCK_COMMENTS } from "@/data/comments";
 
 // Define types for our components
 type TeamMember = {
@@ -587,6 +591,21 @@ function PitchDetailContent() {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [activeSection, setActiveSection] = useState("overview");
 
+  // Get comment count for the current pitch
+  const getCommentCount = (pitchId: string) => {
+    const comments = MOCK_COMMENTS[pitchId] || [];
+    let count = comments.length;
+
+    // Add replies to the count
+    comments.forEach(comment => {
+      if (comment.replies) {
+        count += comment.replies.length;
+      }
+    });
+
+    return count;
+  };
+
   useEffect(() => {
     // Simulate loading data
     setIsLoading(true);
@@ -793,6 +812,11 @@ function PitchDetailContent() {
                 { id: "gallery", label: "Gallery", icon: <IconPhoto size={18} /> },
                 { id: "video", label: "Video Pitch", icon: <IconVideo size={18} /> },
                 { id: "team", label: "Team", icon: <IconUsers size={18} /> },
+                {
+                  id: "comments",
+                  label: `Comments (${getCommentCount(pitch.id)})`,
+                  icon: <IconMessageCircle size={18} />
+                },
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -1022,6 +1046,26 @@ function PitchDetailContent() {
                     ))}
                   </div>
                 </Card>
+              </motion.div>
+            )}
+
+            {activeSection === "comments" && (
+              <motion.div
+                key="comments"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <CommentSection
+                  pitchId={pitch.id}
+                  initialComments={MOCK_COMMENTS[pitch.id] || MOCK_COMMENTS.default}
+                  currentUser={{
+                    id: "current-user",
+                    name: "You",
+                    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3"
+                  }}
+                />
               </motion.div>
             )}
           </AnimatePresence>

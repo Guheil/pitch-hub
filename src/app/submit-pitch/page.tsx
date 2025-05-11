@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import DashboardNavbar from "@/components/dashboard/dashboard-navbar";
 import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
 import { Card } from "@/components/ui/Card";
@@ -32,9 +31,7 @@ import {
   IconTarget,
   IconUsers,
   IconChartBar,
-  IconBuildingStore,
   IconPhoto,
-  IconVideo,
   IconPencil,
   IconX,
 } from "@tabler/icons-react";

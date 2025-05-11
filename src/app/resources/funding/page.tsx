@@ -11,7 +11,6 @@ import {
   IconArrowLeft,
   IconChevronRight,
   IconSearch,
-  IconFilter,
   IconBuildingBank,
   IconCoin,
   IconUsers,
@@ -188,9 +187,9 @@ export default function FundingResourcesPage() {
           <div className="relative mb-12 rounded-3xl overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-90"></div>
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1559526324-593bc073d938?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay"></div>
-            
+
             <div className="relative z-10 py-16 px-8 text-white">
-              <motion.h1 
+              <motion.h1
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -198,7 +197,7 @@ export default function FundingResourcesPage() {
               >
                 Funding Resources
               </motion.h1>
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -206,9 +205,9 @@ export default function FundingResourcesPage() {
               >
                 Discover funding opportunities and learn how to secure investment for your startup
               </motion.p>
-              
+
               {/* Search Bar */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -234,7 +233,7 @@ export default function FundingResourcesPage() {
               <IconRocket size={24} className="mr-2 text-purple-500" />
               Top Funding Sources
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {TOP_FUNDING_SOURCES.map((source, index) => (
                 <motion.div
@@ -253,11 +252,11 @@ export default function FundingResourcesPage() {
                       <p className="text-sm text-gray-600 dark:text-gray-400">{source.category}</p>
                     </div>
                   </div>
-                  
+
                   <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-2">
                     {source.description}
                   </p>
-                  
+
                   <div className="flex flex-wrap gap-2 mb-4">
                     <span className="px-2 py-1 text-xs rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300">
                       {source.fundingRange}
@@ -273,7 +272,7 @@ export default function FundingResourcesPage() {
                       </span>
                     )}
                   </div>
-                  
+
                   <a
                     href={source.website}
                     target="_blank"
@@ -318,8 +317,23 @@ export default function FundingResourcesPage() {
   );
 }
 
+// Define the type for funding resources
+type FundingResource = {
+  id: string;
+  title: string;
+  description: string;
+  type: string;
+  featured: boolean;
+  new: boolean;
+  image: string;
+  link: string;
+  duration?: string;
+  author?: string;
+  authorRole?: string;
+};
+
 // Funding Resource Card Component
-function FundingResourceCard({ resource }: { resource: any }) {
+function FundingResourceCard({ resource }: { resource: FundingResource }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -328,7 +342,7 @@ function FundingResourceCard({ resource }: { resource: any }) {
       className="group relative h-full"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-pink-500/5 to-blue-500/5 dark:from-purple-500/10 dark:via-pink-500/10 dark:to-blue-500/10 rounded-2xl transform group-hover:scale-[1.03] transition-transform duration-300"></div>
-      
+
       <div className="relative h-full rounded-2xl overflow-hidden backdrop-blur-sm border border-white/10 dark:border-white/5 bg-white/50 dark:bg-black/20">
         {/* Resource Image */}
         <div className="relative h-48 w-full overflow-hidden">
@@ -339,12 +353,12 @@ function FundingResourceCard({ resource }: { resource: any }) {
             className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-          
+
           {/* Category Badge */}
           <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-medium">
             {FUNDING_TYPES.find(type => type.id === resource.type)?.label}
           </div>
-          
+
           {/* Featured or New Badge */}
           {(resource.featured || resource.new) && (
             <div className={`absolute top-4 right-4 px-3 py-1 rounded-full backdrop-blur-md text-xs font-medium ${
@@ -364,17 +378,17 @@ function FundingResourceCard({ resource }: { resource: any }) {
             </div>
           )}
         </div>
-        
+
         {/* Content */}
         <div className="p-6">
           <h3 className="text-xl font-bold mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
             {resource.title}
           </h3>
-          
+
           <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
             {resource.description}
           </p>
-          
+
           {/* Resource Meta */}
           <div className="flex items-center text-sm text-gray-500 dark:text-gray-500 mb-4">
             {resource.duration && (
@@ -384,12 +398,12 @@ function FundingResourceCard({ resource }: { resource: any }) {
               </div>
             )}
           </div>
-          
+
           {/* Author Info */}
           {resource.author && (
             <div className="flex items-center mb-4">
               <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white text-xs font-bold mr-3">
-                {resource.author.split(' ').map(name => name[0]).join('')}
+                {resource.author.split(' ').map((name: string) => name[0]).join('')}
               </div>
               <div>
                 <p className="text-sm font-medium">{resource.author}</p>
@@ -399,7 +413,7 @@ function FundingResourceCard({ resource }: { resource: any }) {
               </div>
             </div>
           )}
-          
+
           {/* Action Button */}
           <Link
             href={resource.link}

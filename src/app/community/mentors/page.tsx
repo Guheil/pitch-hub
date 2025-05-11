@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
 import DashboardNavbar from "@/components/dashboard/dashboard-navbar";
 import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
 import { Button } from "@/components/ui/Button";
@@ -205,7 +204,25 @@ const ALL_LANGUAGES = Array.from(
   new Set(MENTORS.flatMap(mentor => mentor.languages))
 ).sort();
 
-export default function MentorsPage() {
+// Loading fallback component
+function MentorsPageLoading() {
+  return (
+    <div className="min-h-screen">
+      <DashboardNavbar />
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex justify-center items-center h-64">
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-gray-600 dark:text-gray-400">Loading mentors...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Main content component that uses useSearchParams
+function MentorsPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -722,5 +739,14 @@ export default function MentorsPage() {
         </main>
       </div>
     </AnimatedGradientBackground>
+  );
+}
+
+// Export the page component with Suspense boundary
+export default function MentorsPage() {
+  return (
+    <Suspense fallback={<MentorsPageLoading />}>
+      <MentorsPageContent />
+    </Suspense>
   );
 }
