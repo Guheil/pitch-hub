@@ -6,6 +6,7 @@ export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
+  helpText?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   fullWidth?: boolean;
@@ -18,6 +19,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     type,
     label,
     error,
+    helpText,
     leftIcon,
     rightIcon,
     fullWidth = true,

@@ -15,12 +15,15 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
+import { useAuth } from "@/contexts/AuthContext";
+import LogoutButton from "@/components/auth/LogoutButton";
 
 interface DashboardNavbarProps {
   className?: string;
 }
 
 export const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ className }) => {
+  const { currentUser } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -153,12 +156,12 @@ export const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ className }) =
                     className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 dark:divide-gray-700"
                   >
                     <div className="px-4 py-3">
-                      <p className="text-sm font-medium">User Name</p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 truncate">user@example.com</p>
+                      <p className="text-sm font-medium">{currentUser?.displayName || 'User'}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{currentUser?.email || 'user@example.com'}</p>
                     </div>
                     <div className="py-1">
                       <Link
-                        href="/profile"
+                        href="/dashboard/profile"
                         className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                         onClick={() => setIsUserMenuOpen(false)}
                       >
@@ -175,14 +178,13 @@ export const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ className }) =
                       </Link>
                     </div>
                     <div className="py-1">
-                      <Link
-                        href="/"
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      <div
+                        className="flex items-center gap-2 px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
                         onClick={() => setIsUserMenuOpen(false)}
                       >
                         <IconLogout size={16} />
-                        Sign out
-                      </Link>
+                        <LogoutButton variant="ghost" size="sm" className="p-0 h-auto text-red-600 dark:text-red-400 hover:bg-transparent" showIcon={false} />
+                      </div>
                     </div>
                   </motion.div>
                 )}

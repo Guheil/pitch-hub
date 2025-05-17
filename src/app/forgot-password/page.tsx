@@ -1,14 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import AuthCard from '@/components/auth/AuthCard';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import { IconMail, IconAlertCircle, IconCheck, IconArrowLeft } from '@tabler/icons-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function ForgotPasswordPage() {
+  const { resetPassword, currentUser } = useAuth();
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -20,18 +22,22 @@ export default function ForgotPasswordPage() {
     setSuccess(false);
     setIsLoading(true);
 
-    // This is a placeholder for actual Firebase password reset
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      // For demo purposes, just show what would happen
-      console.log('Password reset email sent to:', email);
-
+      await resetPassword(email);
       setSuccess(true);
-    } catch (err) {
-      setError('Failed to send password reset email');
+    } catch (err: any) {
       console.error('Password reset error:', err);
+
+      // Handle different Firebase error codes
+      if (err.code === 'auth/user-not-found') {
+        setError('No account found with this email address');
+      } else if (err.code === 'auth/invalid-email') {
+        setError('Invalid email address');
+      } else if (err.code === 'auth/missing-email') {
+        setError('Please enter your email address');
+      } else {
+        setError(err.message || 'Failed to send password reset email');
+      }
     } finally {
       setIsLoading(false);
     }

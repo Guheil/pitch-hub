@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -10,33 +10,43 @@ import Button from '@/components/ui/Button';
 import Divider from '@/components/ui/Divider';
 import SocialLogin from '@/components/auth/SocialLogin';
 import { IconMail, IconLock, IconAlertCircle } from '@tabler/icons-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function LoginPage() {
   const router = useRouter();
+  const { login, googleSignIn, currentUser } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+
+  // Check if user is already logged in
+  useEffect(() => {
+    if (currentUser) {
+      const redirectPath = sessionStorage.getItem('redirectAfterLogin') || '/dashboard';
+      sessionStorage.removeItem('redirectAfterLogin');
+      router.push(redirectPath);
+    }
+  }, [currentUser, router]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
 
-    // This is a placeholder for actual Firebase authentication
-    // In a real implementation, you would call Firebase Auth here
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      // For demo purposes, just show what would happen
-      console.log('Login with:', { email, password });
-
-      // Redirect to dashboard after successful login
-      router.push('/dashboard');
-    } catch (err) {
-      setError('Invalid email or password');
+      await login(email, password);
+      // Redirect is handled by the useEffect hook that watches currentUser
+    } catch (err: any) {
       console.error('Login error:', err);
+      // Handle different Firebase error codes
+      if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
+        setError('Invalid email or password');
+      } else if (err.code === 'auth/too-many-requests') {
+        setError('Too many failed login attempts. Please try again later or reset your password.');
+      } else {
+        setError(err.message || 'Failed to log in');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -46,34 +56,31 @@ export default function LoginPage() {
     setError('');
     setIsLoading(true);
 
-    // This is a placeholder for actual Firebase Google authentication
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      console.log('Google login initiated');
-
-      // Redirect to dashboard after successful login
-      router.push('/dashboard');
-    } catch (err) {
-      setError('Google login failed');
+      await googleSignIn();
+      // Redirect is handled by the useEffect hook that watches currentUser
+    } catch (err: any) {
       console.error('Google login error:', err);
+      if (err.code === 'auth/popup-closed-by-user') {
+        setError('Login canceled. Please try again.');
+      } else {
+        setError(err.message || 'Google login failed');
+      }
     } finally {
       setIsLoading(false);
     }
   };
 
+  // We're not implementing GitHub login for now
   const handleGithubLogin = async () => {
     setError('');
     setIsLoading(true);
 
     try {
+      // This is just a placeholder - we'll implement GitHub auth later
       await new Promise(resolve => setTimeout(resolve, 1000));
-      console.log('GitHub login initiated');
-
-      // Redirect to dashboard after successful login
-      router.push('/dashboard');
-    } catch {
+      setError('GitHub login is not implemented yet');
+    } catch (err: any) {
       setError('GitHub login failed');
     } finally {
       setIsLoading(false);
@@ -81,7 +88,7 @@ export default function LoginPage() {
   };
 
   return (
-    <AuthCard title="Log in to your account" subtitle="Welcome back to PitchHub">
+    <AuthCard title="Log in to your account" subtitle="Welcome back to FoundersFrame">
       {error && (
         <motion.div
           className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 rounded-lg text-sm flex items-center gap-2"

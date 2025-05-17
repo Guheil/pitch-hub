@@ -1,0 +1,51 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Common functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+    
+    // Users collection
+    match /users/{userId} {
+      // Users can read their own profile
+      // Anyone can read basic user info (for displaying author info)
+      allow read: if isSignedIn();
+      
+      // Only the user can update their own profile
+      allow create, update: if isOwner(userId);
+      
+      // No one can delete user profiles (handled by admin)
+      allow delete: if false;
+    }
+    
+    // Pitches collection
+    match /pitches/{pitchId} {
+      // Anyone can read public pitches
+      allow read: if true;
+      
+      // Only authenticated users can create pitches
+      allow create: if isSignedIn();
+      
+      // Only the author can update or delete their pitches
+      allow update, delete: if isSignedIn() && request.auth.uid == resource.data.authorId;
+    }
+    
+    // Comments collection
+    match /comments/{commentId} {
+      // Anyone can read comments
+      allow read: if true;
+      
+      // Only authenticated users can create comments
+      allow create: if isSignedIn();
+      
+      // Only the author can update or delete their comments
+      allow update, delete: if isSignedIn() && request.auth.uid == resource.data.authorId;
+    }
+  }
+}

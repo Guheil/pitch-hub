@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -10,15 +10,26 @@ import Button from '@/components/ui/Button';
 import Divider from '@/components/ui/Divider';
 import SocialLogin from '@/components/auth/SocialLogin';
 import { IconUser, IconMail, IconLock, IconAlertCircle, IconShieldCheck } from '@tabler/icons-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function SignupPage() {
   const router = useRouter();
+  const { signup, googleSignIn, updateUserProfile, currentUser } = useAuth();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+
+  // Check if user is already logged in
+  useEffect(() => {
+    if (currentUser) {
+      const redirectPath = sessionStorage.getItem('redirectAfterLogin') || '/dashboard';
+      sessionStorage.removeItem('redirectAfterLogin');
+      router.push(redirectPath);
+    }
+  }, [currentUser, router]);
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,22 +41,31 @@ export default function SignupPage() {
       return;
     }
 
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters');
+      return;
+    }
+
     setIsLoading(true);
 
-    // This is a placeholder for actual Firebase authentication
-    // In a real implementation, you would call Firebase Auth here
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Create the user account with name, email, and password
+      await signup(email, password, name);
 
-      // For demo purposes, just show what would happen
-      console.log('Signup with:', { name, email, password });
-
-      // Redirect to dashboard after successful signup
-      router.push('/dashboard');
-    } catch (err) {
-      setError('Failed to create account');
+      // Redirect is handled by the useEffect hook that watches currentUser
+    } catch (err: any) {
       console.error('Signup error:', err);
+
+      // Handle different Firebase error codes
+      if (err.code === 'auth/email-already-in-use') {
+        setError('Email is already in use. Try logging in instead.');
+      } else if (err.code === 'auth/invalid-email') {
+        setError('Invalid email address');
+      } else if (err.code === 'auth/weak-password') {
+        setError('Password is too weak. Use at least 6 characters.');
+      } else {
+        setError(err.message || 'Failed to create account');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -55,34 +75,31 @@ export default function SignupPage() {
     setError('');
     setIsLoading(true);
 
-    // This is a placeholder for actual Firebase Google authentication
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      console.log('Google signup initiated');
-
-      // Redirect to dashboard after successful signup
-      router.push('/dashboard');
-    } catch (err) {
-      setError('Google signup failed');
+      await googleSignIn();
+      // Redirect is handled by the useEffect hook that watches currentUser
+    } catch (err: any) {
       console.error('Google signup error:', err);
+      if (err.code === 'auth/popup-closed-by-user') {
+        setError('Signup canceled. Please try again.');
+      } else {
+        setError(err.message || 'Google signup failed');
+      }
     } finally {
       setIsLoading(false);
     }
   };
 
+  // We're not implementing GitHub login for now
   const handleGithubSignup = async () => {
     setError('');
     setIsLoading(true);
 
     try {
+      // This is just a placeholder - we'll implement GitHub auth later
       await new Promise(resolve => setTimeout(resolve, 1000));
-      console.log('GitHub signup initiated');
-
-      // Redirect to dashboard after successful signup
-      router.push('/dashboard');
-    } catch {
+      setError('GitHub signup is not implemented yet');
+    } catch (err: any) {
       setError('GitHub signup failed');
     } finally {
       setIsLoading(false);
@@ -90,7 +107,7 @@ export default function SignupPage() {
   };
 
   return (
-    <AuthCard title="Create your account" subtitle="Join PitchHub today">
+    <AuthCard title="Create your account" subtitle="Join FoundersFrame today">
       {error && (
         <motion.div
           className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 rounded-lg text-sm flex items-center gap-2"
