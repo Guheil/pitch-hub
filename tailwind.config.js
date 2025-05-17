@@ -17,38 +17,76 @@ module.exports = {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+        // Base colors
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+
+        // UI colors
+        ui: {
+          primary: 'var(--ui-primary)',
+          primaryHover: 'var(--ui-primary-hover)',
+          secondary: 'var(--ui-secondary)',
+          secondaryHover: 'var(--ui-secondary-hover)',
+          outline: 'var(--ui-outline)',
+          ghost: 'var(--ui-ghost)',
+          ghostHover: 'var(--ui-ghost-hover)',
+          card: 'var(--ui-card)',
+          cardBorder: 'var(--ui-card-border)',
+          input: 'var(--ui-input)',
+          inputBorder: 'var(--ui-input-border)',
+          divider: 'var(--ui-divider)',
         },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+
+        // Text colors
+        text: {
+          primary: 'var(--text-primary)',
+          secondary: 'var(--text-secondary)',
+          muted: 'var(--text-muted)',
+          inverted: 'var(--text-inverted)',
         },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+
+        // Overlay colors
+        overlay: {
+          background: 'var(--overlay-background)',
+          backdrop: 'var(--overlay-backdrop)',
+          card: 'var(--overlay-card)',
+          hover: 'var(--overlay-hover)',
         },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+
+        // Status colors
+        status: {
+          success: 'var(--status-success)',
+          error: 'var(--status-error)',
+          warning: 'var(--status-warning)',
+          info: 'var(--status-info)',
         },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+
+        // Brand colors
+        brand: {
+          blue: {
+            primary: '#0057b8',
+            light: '#0ea5e9',
+            dark: '#003b7a',
+            hover: '#0046a1',
+          },
+          purple: {
+            primary: '#5a189a',
+            light: '#8b5cf6',
+            dark: '#3c0d66',
+            hover: '#4a1580',
+          },
+          red: {
+            primary: '#b30000',
+            light: '#ef4444',
+            dark: '#7f0000',
+            hover: '#a00000',
+          },
+          green: {
+            primary: '#006400',
+            light: '#10b981',
+            dark: '#004d00',
+            hover: '#005500',
+          },
         },
       },
       borderRadius: {

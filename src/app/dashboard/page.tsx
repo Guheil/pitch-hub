@@ -390,7 +390,7 @@ export default function Dashboard() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="mb-12"
+            className="mb-12 entrepreneurs-toolkit"
           >
             <SectionHeading
               title="Entrepreneur's Toolkit"
@@ -400,7 +400,7 @@ export default function Dashboard() {
             />
 
             {/* Unique Layout with Theme Support */}
-            <div className="relative py-12 px-4 overflow-hidden rounded-3xl bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 dark:from-blue-500/10 dark:via-purple-500/10 dark:to-pink-500/10 backdrop-blur-sm border border-black/5 dark:border-white/5">
+            <div className="relative py-12 px-4 overflow-hidden rounded-3xl bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 dark:from-blue-500/10 dark:via-purple-500/10 dark:to-pink-500/10 backdrop-blur-sm border border-black/10 dark:border-white/5">
               {/* Background decorative elements */}
               <div className="absolute top-0 left-0 w-full h-full">
                 <div className="absolute top-10 left-10 w-32 h-32 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl"></div>
@@ -423,7 +423,7 @@ export default function Dashboard() {
                     return (
                       <motion.div
                         key={i}
-                        className="absolute w-1 h-1 bg-black/20 dark:bg-white/30 rounded-full"
+                        className="absolute w-1 h-1 bg-black/40 dark:bg-white/30 rounded-full"
                         initial={{
                           x: xPos,
                           y: yPos,
@@ -432,7 +432,7 @@ export default function Dashboard() {
                         animate={{
                           x: [xPos, xPos2, xPos3],
                           y: [yPos, yPos2, yPos3],
-                          opacity: [0.3, 0.7, 0.3]
+                          opacity: [0.4, 0.8, 0.4]
                         }}
                         transition={{
                           duration: durationVal,
@@ -456,8 +456,8 @@ export default function Dashboard() {
                       whileHover={{ y: -5 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
-                      <div className="relative h-full p-1 bg-gradient-to-br from-blue-500 via-blue-400 to-blue-600 dark:from-blue-600 dark:via-blue-500 dark:to-blue-700 rounded-2xl overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-blue-400 to-blue-600 dark:from-blue-600 dark:via-blue-500 dark:to-blue-700 opacity-80 dark:opacity-90"></div>
+                      <div className="relative h-full p-1.5 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-700 dark:from-blue-600 dark:via-blue-500 dark:to-blue-700 rounded-2xl overflow-hidden border-2 border-blue-400 dark:border-blue-500 shadow-lg hover:shadow-xl transition-shadow">
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-700 dark:from-blue-600 dark:via-blue-500 dark:to-blue-700 opacity-80 dark:opacity-90"></div>
 
                         <div className="relative h-full bg-white/20 dark:bg-black/20 backdrop-blur-md p-6 rounded-xl overflow-hidden flex flex-col">
                           {/* Decorative video frames */}
@@ -465,8 +465,8 @@ export default function Dashboard() {
                           <div className="absolute -right-2 -top-2 w-16 h-16 rounded-lg border-4 border-white/30 dark:border-white/20 rotate-6 opacity-40"></div>
 
                           <div className="flex items-center gap-4 mb-4">
-                            <div className="w-14 h-14 rounded-xl bg-white/20 dark:bg-white/10 flex items-center justify-center text-white shadow-lg">
-                              <IconVideo size={28} />
+                            <div className="w-14 h-14 rounded-xl bg-blue-800/80 dark:bg-white/10 flex items-center justify-center text-white shadow-lg">
+                              <IconVideo size={28} className="text-white" />
                             </div>
                             <h3 className="text-2xl font-bold text-white">Pitch Masterclass</h3>
                           </div>
@@ -477,7 +477,7 @@ export default function Dashboard() {
 
                           <Link
                             href="/resources/pitch-masterclass"
-                            className="self-start py-2 px-4 bg-white/20 hover:bg-white/30 dark:bg-white/10 dark:hover:bg-white/20 text-white rounded-xl flex items-center gap-2 transition-all duration-300 group-hover:pl-6"
+                            className="self-start py-2 px-4 bg-blue-700/90 hover:bg-blue-800/90 dark:bg-white/10 dark:hover:bg-white/20 text-white rounded-xl flex items-center gap-2 transition-all duration-300 group-hover:pl-6"
                           >
                             Watch Now
                             <motion.div
@@ -504,8 +504,8 @@ export default function Dashboard() {
                         whileHover={{ y: -5 }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
-                        <div className="relative h-full p-1 bg-gradient-to-br from-purple-500 via-purple-400 to-purple-600 dark:from-purple-600 dark:via-purple-500 dark:to-purple-700 rounded-2xl overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-br from-purple-500 via-purple-400 to-purple-600 dark:from-purple-600 dark:via-purple-500 dark:to-purple-700 opacity-80 dark:opacity-90"></div>
+                        <div className="relative h-full p-1.5 bg-gradient-to-br from-purple-700 via-purple-600 to-purple-800 dark:from-purple-600 dark:via-purple-500 dark:to-purple-700 rounded-2xl overflow-hidden border-2 border-purple-400 dark:border-purple-500 shadow-lg hover:shadow-xl transition-shadow">
+                          <div className="absolute inset-0 bg-gradient-to-br from-purple-700 via-purple-600 to-purple-800 dark:from-purple-600 dark:via-purple-500 dark:to-purple-700 opacity-80 dark:opacity-90"></div>
 
                           <div className="relative h-full bg-white/20 dark:bg-black/20 backdrop-blur-md p-6 rounded-xl overflow-hidden flex flex-col">
                             {/* Decorative elements */}
@@ -513,8 +513,8 @@ export default function Dashboard() {
                             <div className="absolute right-8 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-4 border-white/30 dark:border-white/20 opacity-40"></div>
 
                             <div className="flex items-center gap-4 mb-4">
-                              <div className="w-12 h-12 rounded-xl bg-white/20 dark:bg-white/10 flex items-center justify-center text-white shadow-lg">
-                                <IconRocket size={24} />
+                              <div className="w-12 h-12 rounded-xl bg-purple-900/80 dark:bg-white/10 flex items-center justify-center text-white shadow-lg">
+                                <IconRocket size={24} className="text-white" />
                               </div>
                               <h3 className="text-xl font-bold text-white">Funding Resources</h3>
                             </div>
@@ -525,7 +525,7 @@ export default function Dashboard() {
 
                             <Link
                               href="/resources/funding"
-                              className="self-start py-2 px-4 bg-white/20 hover:bg-white/30 dark:bg-white/10 dark:hover:bg-white/20 text-white rounded-xl flex items-center gap-2 transition-all duration-300 group-hover:pl-6"
+                              className="self-start py-2 px-4 bg-purple-800/90 hover:bg-purple-900/90 dark:bg-white/10 dark:hover:bg-white/20 text-white rounded-xl flex items-center gap-2 transition-all duration-300 group-hover:pl-6"
                             >
                               Explore Funding
                               <motion.div
@@ -550,16 +550,16 @@ export default function Dashboard() {
                         whileHover={{ y: -5 }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
-                        <div className="relative h-full p-1 bg-gradient-to-br from-amber-500 via-amber-400 to-amber-600 dark:from-amber-600 dark:via-amber-500 dark:to-amber-700 rounded-2xl overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-br from-amber-500 via-amber-400 to-amber-600 dark:from-amber-600 dark:via-amber-500 dark:to-amber-700 opacity-80 dark:opacity-90"></div>
+                        <div className="relative h-full p-1.5 bg-gradient-to-br from-amber-700 via-amber-600 to-amber-800 dark:from-amber-600 dark:via-amber-500 dark:to-amber-700 rounded-2xl overflow-hidden border-2 border-amber-400 dark:border-amber-500 shadow-lg hover:shadow-xl transition-shadow">
+                          <div className="absolute inset-0 bg-gradient-to-br from-amber-700 via-amber-600 to-amber-800 dark:from-amber-600 dark:via-amber-500 dark:to-amber-700 opacity-80 dark:opacity-90"></div>
 
                           <div className="relative h-full bg-white/20 dark:bg-black/20 backdrop-blur-md p-6 rounded-xl overflow-hidden flex flex-col">
                             {/* Decorative elements */}
                             <div className="absolute -left-4 bottom-0 w-20 h-20 rounded-tl-3xl border-4 border-white/20 dark:border-white/10 opacity-30"></div>
 
                             <div className="flex items-center gap-4 mb-4">
-                              <div className="w-12 h-12 rounded-xl bg-white/20 dark:bg-white/10 flex items-center justify-center text-white shadow-lg">
-                                <IconBulb size={24} />
+                              <div className="w-12 h-12 rounded-xl bg-amber-900/80 dark:bg-white/10 flex items-center justify-center text-white shadow-lg">
+                                <IconBulb size={24} className="text-white" />
                               </div>
                               <h3 className="text-xl font-bold text-white">Mentor Connect</h3>
                             </div>
@@ -570,7 +570,7 @@ export default function Dashboard() {
 
                             <Link
                               href="/community/mentors"
-                              className="self-start py-2 px-4 bg-white/20 hover:bg-white/30 dark:bg-white/10 dark:hover:bg-white/20 text-white rounded-xl flex items-center gap-2 transition-all duration-300 group-hover:pl-6"
+                              className="self-start py-2 px-4 bg-amber-800/90 hover:bg-amber-900/90 dark:bg-white/10 dark:hover:bg-white/20 text-white rounded-xl flex items-center gap-2 transition-all duration-300 group-hover:pl-6"
                             >
                               Find a Mentor
                               <motion.div

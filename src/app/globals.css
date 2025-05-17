@@ -1,25 +1,85 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #000000; /* Pure black text for maximum contrast */
-  --text-muted: #333333; /* Very dark gray for muted text */
-  --text-muted-secondary: #444444; /* Dark gray for secondary text */
-}
+/* Theme variables - these match the constants defined in src/constants/theme.ts */
 
 :root {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Base colors */
+  --background: #ffffff;
+  --foreground: #000000;
+
+  /* Text colors */
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-muted: #444444;
+  --text-inverted: #ffffff;
+
+  /* UI Element colors */
+  --ui-primary: #0057b8;
+  --ui-primary-hover: #0046a1;
+  --ui-secondary: #f2f2f2;
+  --ui-secondary-hover: #e5e5e5;
+  --ui-outline: rgba(0, 0, 0, 0.08);
+  --ui-ghost: transparent;
+  --ui-ghost-hover: #f2f2f2;
+  --ui-card: rgba(255, 255, 255, 0.95);
+  --ui-card-border: rgba(0, 0, 0, 0.1);
+  --ui-input: #ffffff;
+  --ui-input-border: rgba(0, 0, 0, 0.2);
+  --ui-divider: rgba(0, 0, 0, 0.1);
+
+  /* Overlay colors */
+  --overlay-background: rgba(255, 255, 255, 0.7);
+  --overlay-backdrop: rgba(240, 240, 240, 0.8);
+  --overlay-card: rgba(255, 255, 255, 0.95);
+  --overlay-hover: rgba(255, 255, 255, 0.2);
+
+  /* Status colors */
+  --status-success: #006400;
+  --status-error: #b30000;
+  --status-warning: #f59e0b;
+  --status-info: #0057b8;
+
+  /* Font variables */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Border radius */
+  --radius: 0.5rem;
 }
 
 /* Dark theme */
 .dark {
+  /* Base colors */
   --background: #0a0a0a;
   --foreground: #ededed;
-  --text-muted: #a0a0a0; /* Lighter gray for dark mode */
-  --text-muted-secondary: #909090; /* Secondary muted text for dark mode */
+
+  /* Text colors */
+  --text-primary: #ededed;
+  --text-secondary: #a0a0a0;
+  --text-muted: #909090;
+  --text-inverted: #000000;
+
+  /* UI Element colors */
+  --ui-primary: #ededed;
+  --ui-primary-hover: #444444;
+  --ui-secondary: #1a1a1a;
+  --ui-secondary-hover: #2a2a2a;
+  --ui-outline: rgba(255, 255, 255, 0.145);
+  --ui-ghost: rgba(255, 255, 255, 0.05);
+  --ui-ghost-hover: #1a1a1a;
+  --ui-card: rgba(0, 0, 0, 0.8);
+  --ui-card-border: rgba(255, 255, 255, 0.1);
+  --ui-input: #1a1a1a;
+  --ui-input-border: rgba(255, 255, 255, 0.2);
+  --ui-divider: rgba(255, 255, 255, 0.1);
+
+  /* Overlay colors */
+  --overlay-background: rgba(0, 0, 0, 0.7);
+  --overlay-backdrop: rgba(0, 0, 0, 0.2);
+  --overlay-card: rgba(0, 0, 0, 0.8);
+  --overlay-hover: rgba(0, 0, 0, 0.2);
+
+  /* Status colors remain the same for consistency */
 }
 
 /* Apply dark mode by default */
@@ -218,9 +278,26 @@ body {
   background-color: rgba(255, 255, 255, 0.95) !important;
 }
 
+.light .bg-white\/70 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
 .light .bg-black\/20,
 .light .bg-black\/30 {
   background-color: rgba(240, 240, 240, 0.8) !important;
+}
+
+/* Fix profile card backgrounds in light mode */
+.light .dark\:bg-gray-800\/70 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.light .dark\:bg-gray-700\/30 {
+  background-color: rgba(245, 245, 245, 0.9) !important;
+}
+
+.light .dark\:bg-black\/50 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
 }
 
 /* Fix pitch card backgrounds without affecting images */
@@ -363,6 +440,12 @@ body {
   color: white !important;
 }
 
+/* Fix dark mode button hover states */
+.dark button:hover.text-background,
+.dark a:hover.text-background {
+  color: white !important;
+}
+
 /* Fix Google sign-in button in light mode */
 .light button[class*="bg-white"],
 .light button.bg-white {
@@ -388,6 +471,22 @@ body {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
 }
 
+/* Specific fix for user dropdown menu */
+.light .user-dropdown-menu {
+  background-color: white !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
+}
+
+.light .user-dropdown-menu > div {
+  background-color: white !important;
+}
+
+.light .user-dropdown-menu a:hover,
+.light .user-dropdown-menu div:hover {
+  background-color: #f0f0f0 !important;
+}
+
 .light .ring-black {
   --tw-ring-color: rgba(0, 0, 0, 0.1) !important;
 }
@@ -410,6 +509,19 @@ body {
   color: #555555 !important;
 }
 
+/* Fix profile card text colors */
+.light .dark\:text-white {
+  color: #000000 !important;
+}
+
+.light .dark\:text-gray-300 {
+  color: #333333 !important;
+}
+
+.light .dark\:text-gray-400 {
+  color: #666666 !important;
+}
+
 /* Fix user avatar */
 .light .w-8.h-8.rounded-full.bg-gradient-to-br.from-blue-500.to-purple-600,
 .light .bg-gradient-to-br.from-blue-500.to-purple-600 {
@@ -419,6 +531,22 @@ body {
 
 .light .hover\:bg-gray-700:hover {
   background-color: #f0f0f0 !important;
+}
+
+.light .dark\:hover\:bg-gray-700:hover {
+  background-color: #f0f0f0 !important;
+}
+
+.light .dark\:hover\:bg-blue-800\/50:hover {
+  background-color: rgba(0, 87, 184, 0.2) !important;
+}
+
+.light .dark\:bg-blue-900\/30 {
+  background-color: rgba(0, 87, 184, 0.1) !important;
+}
+
+.light .dark\:bg-purple-900\/30 {
+  background-color: rgba(90, 24, 154, 0.1) !important;
 }
 
 /* Fix welcome back section - preserve image opacity */
@@ -457,6 +585,19 @@ body {
 .light .border-white\/20,
 .light .border-white\/30 {
   border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.light .dark\:border-white\/10,
+.light .dark\:border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.light .dark\:border-gray-700 {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.light .dark\:border-gray-800 {
+  border-color: rgba(0, 0, 0, 0.15) !important;
 }
 
 /* Keep welcome section text white for better contrast on colored backgrounds */
@@ -510,3 +651,133 @@ body {
 .light main .text-white {
   color: white !important;
 }
+
+/* Entrepreneur's Toolkit specific styles for light mode */
+/* Icon container styles */
+.light .entrepreneurs-toolkit div:nth-child(1) > div > div > div > div > div.w-14.h-14.rounded-xl {
+  background-color: rgba(30, 64, 175, 0.9) !important;
+}
+
+.light .entrepreneurs-toolkit div:nth-child(2) > div > div:nth-child(1) > div > div > div.w-12.h-12.rounded-xl {
+  background-color: rgba(88, 28, 135, 0.9) !important;
+}
+
+.light .entrepreneurs-toolkit div:nth-child(2) > div > div:nth-child(2) > div > div > div.w-12.h-12.rounded-xl {
+  background-color: rgba(120, 53, 15, 0.9) !important;
+}
+
+/* Icon styles */
+.light .entrepreneurs-toolkit svg {
+  color: white !important;
+  fill: white !important;
+}
+
+.light .entrepreneurs-toolkit .text-white {
+  color: white !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+.light .entrepreneurs-toolkit .text-white\/90 {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+.light .entrepreneurs-toolkit [class*="bg-gradient-to-br"] {
+  background: inherit !important;
+}
+
+/* Card background styles */
+.light .entrepreneurs-toolkit div:nth-child(1) > div > div.relative.h-full.p-1\.5 {
+  background: linear-gradient(to bottom right, #1e40af, #3b82f6) !important;
+  border-color: #60a5fa !important; /* Blue-400 */
+}
+
+.light .entrepreneurs-toolkit div:nth-child(2) > div > div:nth-child(1) > div.relative.h-full.p-1\.5 {
+  background: linear-gradient(to bottom right, #7e22ce, #a855f7) !important;
+  border-color: #c084fc !important; /* Purple-400 */
+}
+
+.light .entrepreneurs-toolkit div:nth-child(2) > div > div:nth-child(2) > div.relative.h-full.p-1\.5 {
+  background: linear-gradient(to bottom right, #b45309, #d97706) !important;
+  border-color: #fbbf24 !important; /* Amber-400 */
+}
+
+/* Enhanced shadows for cards */
+.light .entrepreneurs-toolkit .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.light .entrepreneurs-toolkit .hover\:shadow-xl:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Background overlay styles */
+.light .entrepreneurs-toolkit div:nth-child(1) > div > div.relative.h-full.p-1\.5 > div.absolute.inset-0 {
+  background: linear-gradient(to bottom right, #1e40af, #3b82f6) !important;
+  opacity: 0.9 !important;
+}
+
+.light .entrepreneurs-toolkit div:nth-child(2) > div > div:nth-child(1) > div.relative.h-full.p-1\.5 > div.absolute.inset-0 {
+  background: linear-gradient(to bottom right, #7e22ce, #a855f7) !important;
+  opacity: 0.9 !important;
+}
+
+.light .entrepreneurs-toolkit div:nth-child(2) > div > div:nth-child(2) > div.relative.h-full.p-1\.5 > div.absolute.inset-0 {
+  background: linear-gradient(to bottom right, #b45309, #d97706) !important;
+  opacity: 0.9 !important;
+}
+
+.light .entrepreneurs-toolkit .from-blue-600 {
+  --tw-gradient-from: #2563eb !important;
+}
+
+.light .entrepreneurs-toolkit .from-purple-700 {
+  --tw-gradient-from: #7e22ce !important;
+}
+
+.light .entrepreneurs-toolkit .from-amber-700 {
+  --tw-gradient-from: #b45309 !important;
+}
+
+.light .entrepreneurs-toolkit .bg-blue-800\/80 {
+  background-color: rgba(30, 64, 175, 0.8) !important;
+}
+
+.light .entrepreneurs-toolkit .bg-purple-900\/80 {
+  background-color: rgba(88, 28, 135, 0.8) !important;
+}
+
+.light .entrepreneurs-toolkit .bg-amber-900\/80 {
+  background-color: rgba(120, 53, 15, 0.8) !important;
+}
+
+.light .entrepreneurs-toolkit .self-start {
+  color: white !important;
+}
+
+/* Specific button styles for each card */
+.light .entrepreneurs-toolkit div:nth-child(1) > div > div > div > a.self-start {
+  background-color: rgba(29, 78, 216, 0.9) !important; /* blue-700/90 */
+}
+
+.light .entrepreneurs-toolkit div:nth-child(1) > div > div > div > a.self-start:hover {
+  background-color: rgba(30, 64, 175, 0.9) !important; /* blue-800/90 */
+}
+
+.light .entrepreneurs-toolkit div:nth-child(2) > div > div:nth-child(1) > div > a.self-start {
+  background-color: rgba(107, 33, 168, 0.9) !important; /* purple-800/90 */
+}
+
+.light .entrepreneurs-toolkit div:nth-child(2) > div > div:nth-child(1) > div > a.self-start:hover {
+  background-color: rgba(88, 28, 135, 0.9) !important; /* purple-900/90 */
+}
+
+.light .entrepreneurs-toolkit div:nth-child(2) > div > div:nth-child(2) > div > a.self-start {
+  background-color: rgba(146, 64, 14, 0.9) !important; /* amber-800/90 */
+}
+
+.light .entrepreneurs-toolkit div:nth-child(2) > div > div:nth-child(2) > div > a.self-start:hover {
+  background-color: rgba(120, 53, 15, 0.9) !important; /* amber-900/90 */
+}
+
+

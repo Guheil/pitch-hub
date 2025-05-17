@@ -153,36 +153,36 @@ export const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ className }) =
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 dark:divide-gray-700"
+                    className="absolute right-0 mt-2 w-48 rounded-md shadow-lg user-dropdown-menu !bg-white dark:!bg-gray-800 ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 dark:divide-gray-700"
                   >
-                    <div className="px-4 py-3">
-                      <p className="text-sm font-medium">{currentUser?.displayName || 'User'}</p>
+                    <div className="px-4 py-3 bg-white dark:bg-gray-800">
+                      <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{currentUser?.displayName || 'User'}</p>
                       <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{currentUser?.email || 'user@example.com'}</p>
                     </div>
-                    <div className="py-1">
+                    <div className="py-1 bg-white dark:bg-gray-800">
                       <Link
                         href="/dashboard/profile"
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-900 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                         onClick={() => setIsUserMenuOpen(false)}
                       >
-                        <IconUser size={16} />
+                        <IconUser size={16} className="text-gray-500 dark:text-gray-400" />
                         Profile
                       </Link>
                       <Link
                         href="/settings"
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-900 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                         onClick={() => setIsUserMenuOpen(false)}
                       >
-                        <IconSettings size={16} />
+                        <IconSettings size={16} className="text-gray-500 dark:text-gray-400" />
                         Settings
                       </Link>
                     </div>
-                    <div className="py-1">
+                    <div className="py-1 bg-white dark:bg-gray-800">
                       <div
                         className="flex items-center gap-2 px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
                         onClick={() => setIsUserMenuOpen(false)}
                       >
-                        <IconLogout size={16} />
+                        <IconLogout size={16} className="text-red-500 dark:text-red-400" />
                         <LogoutButton variant="ghost" size="sm" className="p-0 h-auto text-red-600 dark:text-red-400 hover:bg-transparent" showIcon={false} />
                       </div>
                     </div>

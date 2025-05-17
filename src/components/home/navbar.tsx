@@ -82,7 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
           </Link>
           <Link
             href="/signup"
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm px-4 py-2"
+            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-ui-primary text-text-inverted hover:bg-ui-primary-hover font-medium text-sm px-4 py-2"
           >
             Sign up
           </Link>
@@ -145,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
                   </Link>
                   <Link
                     href="/signup"
-                    className="mt-2 rounded-lg border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-lg px-4 py-3"
+                    className="mt-2 rounded-lg border border-solid border-transparent transition-colors flex items-center justify-center bg-ui-primary text-text-inverted hover:bg-ui-primary-hover font-medium text-lg px-4 py-3"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Sign up
