@@ -8,13 +8,11 @@ import {
   query,
   where,
   getDocs,
-  Timestamp,
   orderBy,
   limit,
   startAfter,
   deleteDoc,
   increment,
-  DocumentSnapshot,
   QueryDocumentSnapshot
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
@@ -22,10 +20,7 @@ import { UserProfile } from '@/types/user';
 import {
   FirestoreUserProfile,
   FirestorePitch,
-  FirestoreComment,
-  FirestoreSavedPitch,
-  FirestoreFollow,
-  FirestoreLike
+  FirestoreComment
 } from '@/types/firestore';
 
 // Collection names
@@ -33,8 +28,6 @@ const USERS_COLLECTION = 'users';
 const PITCHES_COLLECTION = 'pitches';
 const COMMENTS_COLLECTION = 'comments';
 const SAVED_PITCHES_COLLECTION = 'savedPitches';
-const FOLLOWS_COLLECTION = 'follows';
-const LIKES_COLLECTION = 'likes';
 
 // ===== USER OPERATIONS =====
 

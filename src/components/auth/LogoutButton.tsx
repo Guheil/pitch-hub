@@ -7,7 +7,7 @@ import Button from '@/components/ui/Button';
 import { IconLogout } from '@tabler/icons-react';
 
 interface LogoutButtonProps {
-  variant?: 'default' | 'outline' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'link';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   showIcon?: boolean;

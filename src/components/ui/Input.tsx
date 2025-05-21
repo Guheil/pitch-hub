@@ -19,7 +19,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     type,
     label,
     error,
-    helpText,
     leftIcon,
     rightIcon,
     fullWidth = true,

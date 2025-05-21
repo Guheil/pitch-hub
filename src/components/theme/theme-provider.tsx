@@ -1,10 +1,6 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import * as themeImport from '@/constants/theme';
-import { generateThemeVariables } from '@/utils/theme-utils';
-
-const themeConstants = themeImport.theme;
 
 type Theme = "light" | "dark" | "system";
 

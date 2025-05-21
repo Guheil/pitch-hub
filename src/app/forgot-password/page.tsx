@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import AuthCard from '@/components/auth/AuthCard';
@@ -10,7 +10,7 @@ import { IconMail, IconAlertCircle, IconCheck, IconArrowLeft } from '@tabler/ico
 import { useAuth } from '@/contexts/AuthContext';
 
 export default function ForgotPasswordPage() {
-  const { resetPassword, currentUser } = useAuth();
+  const { resetPassword } = useAuth();
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -25,18 +25,23 @@ export default function ForgotPasswordPage() {
     try {
       await resetPassword(email);
       setSuccess(true);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Password reset error:', err);
 
       // Handle different Firebase error codes
-      if (err.code === 'auth/user-not-found') {
-        setError('No account found with this email address');
-      } else if (err.code === 'auth/invalid-email') {
-        setError('Invalid email address');
-      } else if (err.code === 'auth/missing-email') {
-        setError('Please enter your email address');
+      if (err && typeof err === 'object' && 'code' in err) {
+        const firebaseError = err as { code: string; message?: string };
+        if (firebaseError.code === 'auth/user-not-found') {
+          setError('No account found with this email address');
+        } else if (firebaseError.code === 'auth/invalid-email') {
+          setError('Invalid email address');
+        } else if (firebaseError.code === 'auth/missing-email') {
+          setError('Please enter your email address');
+        } else {
+          setError(firebaseError.message || 'Failed to send password reset email');
+        }
       } else {
-        setError(err.message || 'Failed to send password reset email');
+        setError('Failed to send password reset email');
       }
     } finally {
       setIsLoading(false);

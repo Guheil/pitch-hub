@@ -92,7 +92,7 @@ export default function UserProfileCard() {
               <h3 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">About</h3>
               <p className="text-gray-600 dark:text-gray-300">
                 {/* This would come from Firestore in a real implementation */}
-                Share a bit about yourself, your interests, and what kind of startup ideas you're passionate about.
+                Share a bit about yourself, your interests, and what kind of startup ideas you&apos;re passionate about.
               </p>
             </div>
 

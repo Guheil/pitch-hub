@@ -37,15 +37,22 @@ export default function LoginPage() {
     try {
       await login(email, password);
       // Redirect is handled by the useEffect hook that watches currentUser
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Login error:', err);
       // Handle different Firebase error codes
-      if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
-        setError('Invalid email or password');
-      } else if (err.code === 'auth/too-many-requests') {
-        setError('Too many failed login attempts. Please try again later or reset your password.');
+      if (err && typeof err === 'object' && 'code' in err) {
+        const firebaseError = err as { code: string; message?: string };
+        if (firebaseError.code === 'auth/invalid-credential' ||
+            firebaseError.code === 'auth/user-not-found' ||
+            firebaseError.code === 'auth/wrong-password') {
+          setError('Invalid email or password');
+        } else if (firebaseError.code === 'auth/too-many-requests') {
+          setError('Too many failed login attempts. Please try again later or reset your password.');
+        } else {
+          setError(firebaseError.message || 'Failed to log in');
+        }
       } else {
-        setError(err.message || 'Failed to log in');
+        setError('Failed to log in');
       }
     } finally {
       setIsLoading(false);
@@ -59,12 +66,17 @@ export default function LoginPage() {
     try {
       await googleSignIn();
       // Redirect is handled by the useEffect hook that watches currentUser
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Google login error:', err);
-      if (err.code === 'auth/popup-closed-by-user') {
-        setError('Login canceled. Please try again.');
+      if (err && typeof err === 'object' && 'code' in err) {
+        const firebaseError = err as { code: string; message?: string };
+        if (firebaseError.code === 'auth/popup-closed-by-user') {
+          setError('Login canceled. Please try again.');
+        } else {
+          setError(firebaseError.message || 'Google login failed');
+        }
       } else {
-        setError(err.message || 'Google login failed');
+        setError('Google login failed');
       }
     } finally {
       setIsLoading(false);
@@ -80,7 +92,7 @@ export default function LoginPage() {
       // This is just a placeholder - we'll implement GitHub auth later
       await new Promise(resolve => setTimeout(resolve, 1000));
       setError('GitHub login is not implemented yet');
-    } catch (err: any) {
+    } catch {
       setError('GitHub login failed');
     } finally {
       setIsLoading(false);

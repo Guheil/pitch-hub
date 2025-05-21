@@ -14,7 +14,7 @@ import { IconUser, IconMail, IconLink, IconMapPin, IconBrandTwitter, IconBrandLi
 export default function EditProfilePage() {
   const router = useRouter();
   const { currentUser, updateUserProfile } = useAuth();
-  
+
   const [displayName, setDisplayName] = useState(currentUser?.displayName || '');
   const [bio, setBio] = useState('');
   const [location, setLocation] = useState('');
@@ -42,14 +42,14 @@ export default function EditProfilePage() {
       // This would be implemented in a future enhancement
 
       setSuccess('Profile updated successfully!');
-      
+
       // Redirect back to profile page after a short delay
       setTimeout(() => {
         router.push('/dashboard/profile');
       }, 1500);
-    } catch (err: any) {
+    } catch (err: Error | unknown) {
       console.error('Error updating profile:', err);
-      setError(err.message || 'Failed to update profile');
+      setError(err instanceof Error ? err.message : 'Failed to update profile');
     } finally {
       setIsLoading(false);
     }
@@ -70,7 +70,7 @@ export default function EditProfilePage() {
     >
       <div className="min-h-screen">
         <DashboardNavbar />
-        
+
         <main className="container mx-auto px-4 py-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -84,8 +84,8 @@ export default function EditProfilePage() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
-                <Link 
-                  href="/dashboard/profile" 
+                <Link
+                  href="/dashboard/profile"
                   className="flex items-center gap-2 px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg shadow-sm border border-white/20 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 transition-all duration-200"
                 >
                   <span>Cancel</span>
@@ -117,7 +117,7 @@ export default function EditProfilePage() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-4">
                   <h2 className="text-xl font-semibold border-b border-gray-200 dark:border-gray-700 pb-2">Basic Information</h2>
-                  
+
                   <Input
                     label="Display Name"
                     type="text"
@@ -174,7 +174,7 @@ export default function EditProfilePage() {
 
                 <div className="space-y-4">
                   <h2 className="text-xl font-semibold border-b border-gray-200 dark:border-gray-700 pb-2">Social Links</h2>
-                  
+
                   <Input
                     label="Twitter"
                     type="text"

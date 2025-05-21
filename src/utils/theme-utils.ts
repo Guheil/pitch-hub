@@ -17,11 +17,11 @@ const theme = themeConstants.theme;
  */
 export function getThemeColor(colorPath: string, mode: 'dark' | 'light' = 'dark'): string {
   const parts = colorPath.split('.');
-  let result: any = mode === 'dark' ? theme.dark : theme.light;
+  let result: unknown = mode === 'dark' ? theme.dark : theme.light;
 
   for (const part of parts) {
-    if (result && result[part] !== undefined) {
-      result = result[part];
+    if (result && typeof result === 'object' && result !== null && part in result) {
+      result = (result as Record<string, unknown>)[part];
     } else {
       // If not found in theme-specific colors, try common colors
       result = getCommonColor(colorPath);
@@ -29,7 +29,7 @@ export function getThemeColor(colorPath: string, mode: 'dark' | 'light' = 'dark'
     }
   }
 
-  return result || '';
+  return typeof result === 'string' ? result : '';
 }
 
 /**
@@ -40,17 +40,17 @@ export function getThemeColor(colorPath: string, mode: 'dark' | 'light' = 'dark'
  */
 export function getCommonColor(colorPath: string): string {
   const parts = colorPath.split('.');
-  let result: any = theme.common;
+  let result: unknown = theme.common;
 
   for (const part of parts) {
-    if (result && result[part] !== undefined) {
-      result = result[part];
+    if (result && typeof result === 'object' && result !== null && part in result) {
+      result = (result as Record<string, unknown>)[part];
     } else {
       return '';
     }
   }
 
-  return result || '';
+  return typeof result === 'string' ? result : '';
 }
 
 /**
@@ -64,13 +64,14 @@ export function generateThemeVariables(mode: 'dark' | 'light' = 'dark'): string 
   let cssVars = '';
 
   // Helper function to flatten nested objects
-  const flattenObject = (obj: any, prefix = '') => {
+  const flattenObject = (obj: Record<string, unknown>, prefix = '') => {
     Object.keys(obj).forEach(key => {
       const value = obj[key];
       const newKey = prefix ? `${prefix}-${key}` : key;
 
       if (typeof value === 'object' && value !== null) {
-        flattenObject(value, newKey);
+        // Cast the value to Record<string, unknown> since we've verified it's a non-null object
+        flattenObject(value as Record<string, unknown>, newKey);
       } else {
         cssVars += `  --${newKey}: ${value};\n`;
       }
@@ -81,8 +82,10 @@ export function generateThemeVariables(mode: 'dark' | 'light' = 'dark'): string 
   return cssVars;
 }
 
-export default {
+const themeUtils = {
   getThemeColor,
   getCommonColor,
   generateThemeVariables,
 };
+
+export default themeUtils;

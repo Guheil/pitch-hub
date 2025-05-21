@@ -14,7 +14,7 @@ import { useAuth } from '@/contexts/AuthContext';
 
 export default function SignupPage() {
   const router = useRouter();
-  const { signup, googleSignIn, updateUserProfile, currentUser } = useAuth();
+  const { signup, googleSignIn, currentUser } = useAuth();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -53,18 +53,23 @@ export default function SignupPage() {
       await signup(email, password, name);
 
       // Redirect is handled by the useEffect hook that watches currentUser
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Signup error:', err);
 
       // Handle different Firebase error codes
-      if (err.code === 'auth/email-already-in-use') {
-        setError('Email is already in use. Try logging in instead.');
-      } else if (err.code === 'auth/invalid-email') {
-        setError('Invalid email address');
-      } else if (err.code === 'auth/weak-password') {
-        setError('Password is too weak. Use at least 6 characters.');
+      if (err && typeof err === 'object' && 'code' in err) {
+        const firebaseError = err as { code: string; message?: string };
+        if (firebaseError.code === 'auth/email-already-in-use') {
+          setError('Email is already in use. Try logging in instead.');
+        } else if (firebaseError.code === 'auth/invalid-email') {
+          setError('Invalid email address');
+        } else if (firebaseError.code === 'auth/weak-password') {
+          setError('Password is too weak. Use at least 6 characters.');
+        } else {
+          setError(firebaseError.message || 'Failed to create account');
+        }
       } else {
-        setError(err.message || 'Failed to create account');
+        setError('Failed to create account');
       }
     } finally {
       setIsLoading(false);
@@ -78,12 +83,17 @@ export default function SignupPage() {
     try {
       await googleSignIn();
       // Redirect is handled by the useEffect hook that watches currentUser
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Google signup error:', err);
-      if (err.code === 'auth/popup-closed-by-user') {
-        setError('Signup canceled. Please try again.');
+      if (err && typeof err === 'object' && 'code' in err) {
+        const firebaseError = err as { code: string; message?: string };
+        if (firebaseError.code === 'auth/popup-closed-by-user') {
+          setError('Signup canceled. Please try again.');
+        } else {
+          setError(firebaseError.message || 'Google signup failed');
+        }
       } else {
-        setError(err.message || 'Google signup failed');
+        setError('Google signup failed');
       }
     } finally {
       setIsLoading(false);
@@ -99,7 +109,7 @@ export default function SignupPage() {
       // This is just a placeholder - we'll implement GitHub auth later
       await new Promise(resolve => setTimeout(resolve, 1000));
       setError('GitHub signup is not implemented yet');
-    } catch (err: any) {
+    } catch {
       setError('GitHub signup failed');
     } finally {
       setIsLoading(false);
